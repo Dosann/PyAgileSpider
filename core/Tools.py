@@ -20,7 +20,6 @@ import github
 from os import getcwd
 import random
 import datetime
-from sys import exit
 
 class SeleniumSupport:
     
@@ -138,7 +137,6 @@ class SeleniumSupport:
     #创建一个selenium的模拟浏览器webdriver
     @staticmethod
     def CreateWebdriver(drivertype,path="..\\core\\webdrivers",loadimage=True,downloadpath=None):
-        print path
         if drivertype=="PhantomJS":
             if loadimage==False:
                 dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
