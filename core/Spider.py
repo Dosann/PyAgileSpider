@@ -25,7 +25,7 @@ def CrawlBegin(paras,threadname,taskque,crawl_function):
     while True:
         try:
             print threadname,"successfully started"
-            c=Crawler.Crawler(threadname,paras)
+            c=Crawler.Crawler(paras)
             status,download_count_iter=c.Crawling(threadname,taskque,crawl_function)
             download_count+=download_count_iter
             if status==1:
@@ -33,7 +33,7 @@ def CrawlBegin(paras,threadname,taskque,crawl_function):
                 break
             restart_count+=1
         except Exception,e:
-            print "(Spider)",e
+            print e
             traceback.print_exc()
             continue
     print threadname,"finished. restart count:",restart_count

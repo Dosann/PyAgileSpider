@@ -38,11 +38,13 @@ def get_paras():
     paras={}
     #数据库访问设置
     paras["conn_settings"]={"dbname":"test",
-                             'host':"10.2.1.26"}
+                             'host':"10.2.1.26",
+                             'user':'root',
+                             'passwd':'123456'}
     #线程数
     paras["threadnumber"]=10
     
-    #是否开启webdriver
+    #不开启webdriver
     paras["webdriver"]="PhantomJS"
     
     #使用github账号
