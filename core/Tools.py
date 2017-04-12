@@ -322,10 +322,9 @@ class GithubAccountManagement:
     
     #读取github账号密码
     @staticmethod
-    def GetGithubAccounts(account_range=None,select_condition=None,number_limit=None,time_recall=None):
+    def GetGithubAccounts(conn,account_range=None,select_condition=None,number_limit=None,time_recall=None):
     #accountrange格式： (3,9)
         
-        conn=DatabaseSupport.GenerateConn("grabgithub")
         condition_text=""
         has_condition=False
         if account_range!=None or select_condition!=None:
@@ -353,7 +352,7 @@ class GithubAccountManagement:
     
     #返回一组账号的(账号，密码，剩余请求次数，生成的请求句柄)
     @staticmethod
-    def GetGithubAccountStatus(accountlist):
+    def GetGithubAccountStatus(conn,accountlist):
     #accountlist格式 [('账号1','密码1'),('账号2','密码2'),...]
         existing_accounts=[]
         non_existing_accounts=[]
@@ -383,10 +382,9 @@ class GithubAccountManagement:
         for account in existing_accounts:
             if account[1][1]==5000:
                 available_accounts.append(account)
-        all_accounts=GithubAccountManagement.GetGithubAccounts()
+        all_accounts=GithubAccountManagement.GetGithubAccounts(conn)
         all_accounts_name=set(map(lambda x:x[1],all_accounts))
         available_accounts_name=set(map(lambda x:x[0][1],available_accounts))
-        conn=DatabaseSupport.GenerateConn("grabgithub")
         for account in existing_accounts:
             if account[0][1] not in all_accounts_name:
                 SaveData.SaveData(conn,[account[0][1:3]],"github_accounts",["github_account","github_passwd"])
@@ -408,14 +406,13 @@ class GithubAccountManagement:
                 SaveData.UpdateData(conn,account[1:3]+("unregistered",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["github_account","github_passwd","status","update_time"],"id=%s"%(account[0]))
                 account_status.append((account[0],"unregistered"))
         
-        conn.close()
         
         
         return account_status
     
     #将原始“邮箱-邮箱密码”格式账号导入数据库
     @staticmethod
-    def ImportRawEmailAccounts(filename,default_passwd="a123456",split_char='----'):
+    def ImportRawEmailAccounts(conn,filename,default_passwd="a123456",split_char='----'):
         path=getcwd()
         path=path[:-len(path.split('\\')[-1])]+"files\\"+filename
         f=open(path,'r')
@@ -423,7 +420,6 @@ class GithubAccountManagement:
         f.close()
         email_accounts=map(lambda x:x[:-1].split(split_char),email_accounts)
         email_accounts=map(lambda x:(x[0],default_passwd,x[1],x[0].split('@')[1],time.strftime("%Y%m%d-%H%M%S")),email_accounts)
-        conn=DatabaseSupport.GenerateConn("grabgithub")
         all_accounts=GithubAccountManagement.GetGithubAccounts()
         all_accounts_name=set(map(lambda x:x[1],all_accounts))
         for email_account in email_accounts:
@@ -431,7 +427,6 @@ class GithubAccountManagement:
                 SaveData.SaveData(conn,[email_account],"github_accounts",["github_account","github_passwd","mail_passwd","mail_type","update_time"])
             else:
                 print "account %s already exists"%(email_account[0])
-        conn.close()
     
     @staticmethod
     def OccupyAnAccount(conn):
