@@ -64,7 +64,7 @@ class Crawler:
                 crawl_function(threadname=threadname,taskque=taskque,crawlerbody=self,errortasks=errortasks)
             except Exception,e:
                 print e
-                #traceback.print_exc()
+                traceback.print_exc()
                 print threadname,"Error when crawling"
                 #将错误任务队列中的任务重新加入任务队列
                 for errortask in errortasks:

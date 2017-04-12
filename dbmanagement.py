@@ -10,27 +10,12 @@ def db_construction(cur,tables):
     
     #若表单不存在，则添加
     
-    if "userdetails" not in tables:
+    if "_" not in tables:
         CreateUserdetails(cur)
 
 #添加表单
 
 def CreateUserdetails(cur):
-    cmd="""create table userdetails(
-            id int primary key,
-            userid int,
-            name varchar(50),
-            company varchar(30),
-            created_at varchar(19),
-            updated_at varchar(19),
-            followercount int,
-            followingcount int,
-            hireable tinyint,
-            location varchar(50),
-            public_gists int,
-            public_repos int,
-            site_admin tinyint,
-            type varchar(12))
-            """
+    cmd="""select 1"""
     cur.execute(cmd)
 
