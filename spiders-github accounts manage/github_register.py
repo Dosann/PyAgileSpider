@@ -57,9 +57,9 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
         Tools.SaveData.UpdateData(conn,("unverified",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(accountid))
         time.sleep(5)
     except Exception,e:
-        webdriver.quit()
         print e
         print "error while registering. current account:",accountid
+        Tools.SaveData.UpdateData(conn,("flagged",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(accountid))
     '''
     #检测该账号是否可用，若可用，则更新数据库
     g=github.Github(accountname,"a123456")
