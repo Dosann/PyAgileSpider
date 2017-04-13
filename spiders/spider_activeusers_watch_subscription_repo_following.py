@@ -71,6 +71,7 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
             rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
         for gfing in gfollowing:
             rela_followings.append((username,unicode(gfing)[17:-2]))
+            
     except Exception,e:
         print e
         if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
