@@ -9,28 +9,42 @@ Email: duxin_be@outlook.com
 from sys import path
 path.append("../")
 from core import Tools
-from core import Spider
+from core import Spider 
 import Queue
 import traceback
+import re
 
 
 def run(threadname,taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
+    global initial_url,domain_name,urlset
 
     driver=crawlerbody.driver
+    conn=crawlerbody.conn
     
     #从队列中读取1个任务
     task=taskque.get()
+    if task[1] in urlset:
+        return
     try:
         #print task[1]
         driver.get(task[1])
-        print task[0],content
     except Exception,e:
         print e
         print traceback.print_exc()
         errortasks.append(task)
         print "error task %s has been put back to taskque"%(task[0])
-    urls=re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')",driver.page_source)
+    if task[0]<=5:
+        urls=re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')",driver.page_source)
+        urls=map(lambda x:domain_name+x,urls)
+        print "found %s urls"%(len(urls))
+        newurls=[]
+        for url in urls:
+            if url not in urlset:
+                newurls.append([url])
+                urlset.add(url)
+                taskque.put((task[0]+1,url))
+        Tools.SaveData.SaveData(conn,newurls,"t_urls",["url"])
     
 def get_paras():
     #设置参数
@@ -57,16 +71,20 @@ def get_paras():
 
 
 def create_queue():
-    global initial_url,domain_name
+    global initial_url,domain_name,urlset
+    urlset=set(initial_url)
     #创建队列
     que=Queue.Queue()
     task=(0,initial_url)
-    que.put(task)
+    for i in range(12):
+        que.put(task)
     
     return que
 
-def main(initial_url,domain_name):
+def main(initial_url1,domain_name1):
     global initial_url,domain_name
+    initial_url=initial_url1
+    domain_name=domain_name1
     Spider.main(get_paras(),create_queue,run,mode=1)
 
 main("""http://zx.chnlc.net/Search/Index""",'zx.chnlc.net')
