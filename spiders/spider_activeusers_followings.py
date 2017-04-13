@@ -79,7 +79,7 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     '''
     
     #储存
-    columns=["name","followername"]
+    columns=["name","followingname"]
     Tools.SaveData.SaveData(conn,relas,"user_relas_following",columns)
     print threadname,g.rate_limiting,"successfully saved usernames of task",taskid,time.ctime()
 
@@ -107,7 +107,7 @@ def get_paras():
 #创建队列
 def create_queue():
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
-    rangeid=(1,30000000)
+    rangeid=(1,4000000)
     #读取已完成的任务列表
     hasfinished_tasks=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select distinct(name) from user_relas_following")))
     #读取任务信息

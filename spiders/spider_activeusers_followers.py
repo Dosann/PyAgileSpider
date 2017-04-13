@@ -93,7 +93,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=30
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号
@@ -108,7 +108,7 @@ def get_paras():
 #创建队列
 def create_queue():
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
-    rangeid=(20000001,40000000)
+    rangeid=(1,10000000)
     #读取已完成的任务列表
     hasfinished_tasks=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select distinct(name) from user_relas_followed")))
     #读取任务信息
