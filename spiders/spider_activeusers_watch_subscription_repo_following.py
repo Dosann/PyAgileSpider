@@ -145,7 +145,9 @@ def create_queue():
             conn.commit()
     
     #读取任务信息
-    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user where status='unfinished' and id<=10")
+    start_id=raw_input(unicode("输入id最小值:",'utf-8').encode('gbk'))
+    end_id=raw_input(unicode("输入id最大值:",'utf-8').encode('gbk'))
+    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user where status='unfinished' and id>=%s and id<=%s"%(start_id,end_id))
     #构建任务队列
     que=Queue.Queue()
     task_count=0
