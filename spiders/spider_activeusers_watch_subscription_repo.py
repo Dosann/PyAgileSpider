@@ -51,7 +51,9 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     taskid,username=taskque.get()
     try:
         user=g.get_user(username)
-        followers=user.get_followers()
+        gsubs=user.get_subscriptions()
+        gstars=user.get_starred()
+        grepos=user.get_repos()
     except Exception,e:
         print e
         if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
@@ -66,10 +68,15 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
             errortasks.append((taskid,username))
             print "unexpected error. task %s has been put back to taskque"%(taskid)
         return
-    relas=[]
-    for follower in followers:
-        relas.append((username,unicode(follower)[17:-2]))
-        #print unicode(follower)[17:-2]
+    rela_subs=[]
+    rela_stars=[]
+    rela_repos=[]
+    for gsu in gsubs:
+        rela_subs.append((username,unicode(gsu)[22:-2][:200]))
+    for gst in gstars:
+        rela_stars.append((username,unicode(gst)[22:-2][:200]))
+    for gre in grepos:
+        rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
     
     '''
     for i in range(14):
@@ -80,8 +87,11 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     '''
     
     #储存
-    columns=["name","followername"]
-    Tools.SaveData.SaveData(conn,relas,"user_relas_followed",columns)
+    Tools.SaveData.SaveData(conn,rela_subs,"user_subscribes_repo",["name","subbed_repo"])
+    Tools.SaveData.SaveData(conn,rela_stars,"user_stars_repo",["name","starred_repo"])
+    Tools.SaveData.SaveData(conn,rela_repos,"user_has_repo",["name","owned_repo"])
+    Tools.SaveData.UpdateData(conn,["finished"],"tasks_user_repo_relas",["status"],"id=%s"%(taskid))
+    
     print threadname,g.rate_limiting,"successfully saved usernames of task",taskid,time.ctime()
 
 #设置参数
@@ -93,7 +103,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=5
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号
@@ -107,26 +117,34 @@ def get_paras():
 
 #创建队列
 def create_queue():
+    #复制任务队列
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
-    rangeid=(20000001,40000000)
-    #读取已完成的任务列表
-    hasfinished_tasks=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select distinct(name) from user_relas_followed")))
+    cur=conn.cursor()
+    cmd="select id from tasks_user_repo_relas"
+    item_count=cur.execute(cmd)
+    if item_count==0:
+        cmd="select id,name from active_users_10"
+        cur.execute(cmd)
+        data=cur.fetchall()
+        data=map(lambda x:(x[0],x[1],"unfinished"),data)
+        cmd="insert into tasks_user_repo_relas(id,name,status) values(%s,%s,%s)"""
+        #数据分批导入
+        data_volume=len(data)
+        batch=data_volume/1000+1
+        for i in range(batch):
+            cur.executemany(cmd,data[1000*i:1000*(i+1)])
+            conn.commit()
+    
     #读取任务信息
-    usernames=Tools.LoadData.LoadDataByIdRange(conn,"active_users_10",["name"],rangeid)
+    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user_repo_relas where status='unfinished' and id<=1000")
     #构建任务队列
     que=Queue.Queue()
-    omited_items_count=0
     task_count=0
-    for username in usernames:
-        if username[0] not in hasfinished_tasks:
-            task_count+=1
-            que.put([task_count,username[0]])
-        else:
-            omited_items_count+=1
-    print omited_items_count,"items has been omited"
+    for user in users:
+        task_count+=1
+        que.put([user[0],user[1]])
     print task_count,"tasks has been loaded"
-    del hasfinished_tasks
-    del usernames
+    del users
             
     
     return que
