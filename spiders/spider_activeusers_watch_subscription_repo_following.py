@@ -25,27 +25,30 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     user_status="finished"
     
 
-    
+    #检测当前g的状态，若rate_limiting[1]低于100，更换账号
     while 1:
         while 1:
             try:
-                ratelimit=g.rate_limiting[0]
+                ratelimit=g.rate_limiting[1]
             except:
                 print "rate_limiting failed"
                 continue
             break
-        if ratelimit<2000
-        print threadname,"current account get flagged:",crawlerbody.gaccount[0]
-        account=Tools.GithubAccountManagement.OccupyAnAccount(conn)
-        if account!=None:
-            crawlerbody.g=Tools.GithubAccountManagement.CreateG(account[1],account[2])
-            crawlerbody.gaccount=account
-            g=crawlerbody.g
-            print threadname,"has changed account:",crawlerbody.gaccount[0]
+        if ratelimit<=100:
+            print threadname,"current account get flagged:",crawlerbody.gaccount[0]
+            Tools.GithubAccountManagement.ReleaseAnAccount(conn,crawlerbody.gaccount)
+            account=Tools.GithubAccountManagement.OccupyAnAccount(conn)
+            if account!=None:
+                crawlerbody.g=Tools.GithubAccountManagement.CreateG(account[1],account[2])
+                crawlerbody.gaccount=account
+                g=crawlerbody.g
+                print threadname,"has changed account:",crawlerbody.gaccount[0]
+            else:
+                print "no available account in accountque.",time.ctime()
+                print threadname,"exits"
+                exit(999)
         else:
-            print "no available account in accountque.",time.ctime()
-            print threadname,"exits"
-            exit(999)
+            break
     
     '''
     #数据库中设置的varchar长度上限
@@ -115,7 +118,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=5
+    paras["threadnumber"]=40
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号
