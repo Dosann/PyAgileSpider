@@ -104,7 +104,7 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     Tools.SaveData.SaveData(conn,rela_subs,"user_subscribes_repo",["name","subbed_repo"])
     Tools.SaveData.SaveData(conn,rela_stars,"user_stars_repo",["name","starred_repo"])
     Tools.SaveData.SaveData(conn,rela_repos,"user_has_repo",["name","owned_repo"])
-    Tools.SaveData.SaveData(conn,rela_repos,"user_relas_following",["name","following_user"])
+    Tools.SaveData.SaveData(conn,rela_followings,"user_relas_following",["name","following_user"])
     Tools.SaveData.UpdateData(conn,[user_status],"tasks_user",["status"],"id=%s"%(taskid))
     
     print threadname,g.rate_limiting,"successfully saved usernames of task",taskid,time.ctime()
