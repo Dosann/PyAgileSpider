@@ -450,6 +450,10 @@ class GithubAccountManagement:
         return account
     
     @staticmethod
+    def ReleaseAnAccount(conn,account):
+        SaveData.UpdateData(conn,("available",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(account[0]))
+        
+    @staticmethod
     def CreateG(account,passwd):
         g=github.Github(account,passwd)
         return g

@@ -108,7 +108,7 @@ def get_paras():
 #创建队列
 def create_queue():
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
-    rangeid=(25000000,30000000)
+    rangeid=(1,20)
     #读取已完成的任务列表
     hasfinished_tasks=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select distinct(name) from user_relas_followed")))
     #读取任务信息

@@ -83,13 +83,13 @@ class Crawler:
             download_count+=1
                 
         #队列已空，返回成功信息，程序结束
+        if self.g!=None:
+            Tools.GithubAccountManagement.ReleaseAnAccount(self.conn,self.gaccount)
+            print threadname,"has released an account"
         if self.conn!=None:
             self.conn.close()
         if self.driver!=None:
             self.driver.quit()
-        if self.g!=None:
-            Tools.GithubAccountManagement.ReleaseAnAccount(self.conn,self.gaccount)
-            print threadname,"has released an account"
         
         return status,download_count
         
