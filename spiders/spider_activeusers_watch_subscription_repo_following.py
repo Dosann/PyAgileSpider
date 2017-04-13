@@ -24,15 +24,17 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     
     user_status="finished"
     
-    while 1:
-        try:
-            ratelimit=g.rate_limiting[1]
-        except:
-            print "rate_limiting failed"
-            continue
-        break
+
     
-    while ratelimit<100:
+    while 1:
+        while 1:
+            try:
+                ratelimit=g.rate_limiting[0]
+            except:
+                print "rate_limiting failed"
+                continue
+            break
+        if ratelimit<2000
         print threadname,"current account get flagged:",crawlerbody.gaccount[0]
         account=Tools.GithubAccountManagement.OccupyAnAccount(conn)
         if account!=None:
@@ -57,6 +59,18 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
         gstars=user.get_starred()
         grepos=user.get_repos()
         gfollowing=user.get_following()
+        rela_subs=[]
+        rela_stars=[]
+        rela_repos=[]
+        rela_followings=[]
+        for gsu in gsubs:
+            rela_subs.append((username,unicode(gsu)[22:-2][:200]))
+        for gst in gstars:
+            rela_stars.append((username,unicode(gst)[22:-2][:200]))
+        for gre in grepos:
+            rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
+        for gfing in gfollowing:
+            rela_followings.append((username,unicode(gfing)[17:-2]))
     except Exception,e:
         print e
         if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
@@ -72,18 +86,6 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
             errortasks.append((taskid,username))
             print "unexpected error. task %s has been put back to taskque"%(taskid)
         return
-    rela_subs=[]
-    rela_stars=[]
-    rela_repos=[]
-    rela_followings=[]
-    for gsu in gsubs:
-        rela_subs.append((username,unicode(gsu)[22:-2][:200]))
-    for gst in gstars:
-        rela_stars.append((username,unicode(gst)[22:-2][:200]))
-    for gre in grepos:
-        rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
-    for gfing in gfollowing:
-        rela_followings.append((username,unicode(gfing)[17:-2]))
     
     '''
     for i in range(14):
@@ -112,7 +114,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=40
+    paras["threadnumber"]=5
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号
