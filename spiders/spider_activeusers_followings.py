@@ -50,7 +50,7 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     taskid,username=taskque.get()
     try:
         user=g.get_user(username)
-        followers=user.get_followers()
+        gfollowing=user.get_following()
     except Exception,e:
         print e
         if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
@@ -66,8 +66,8 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
             print "unexpected error. task %s has been put back to taskque"%(taskid)
         return
     relas=[]
-    for follower in followers:
-        relas.append((username,unicode(follower)[17:-2]))
+    for gfing in gfollowing:
+        relas.append((username,unicode(gfing)[17:-2]))
         #print unicode(follower)[17:-2]
     
     '''

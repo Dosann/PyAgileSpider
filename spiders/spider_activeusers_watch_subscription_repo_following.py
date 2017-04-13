@@ -22,6 +22,8 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     conn=crawlerbody.conn
     g=crawlerbody.g
     
+    user_status="finished"
+    
     while 1:
         try:
             ratelimit=g.rate_limiting[1]
@@ -54,9 +56,11 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
         gsubs=user.get_subscriptions()
         gstars=user.get_starred()
         grepos=user.get_repos()
+        gfollowing=user.get_following()
     except Exception,e:
         print e
         if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
+            user_status="not found"
             print "can not found user %s"%(username)
         elif 403 in e:
             errortasks.append((taskid,username))
@@ -71,12 +75,15 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     rela_subs=[]
     rela_stars=[]
     rela_repos=[]
+    rela_followings=[]
     for gsu in gsubs:
         rela_subs.append((username,unicode(gsu)[22:-2][:200]))
     for gst in gstars:
         rela_stars.append((username,unicode(gst)[22:-2][:200]))
     for gre in grepos:
         rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
+    for gfing in gfollowing:
+        rela_followings.append((username,unicode(gfing)[17:-2]))
     
     '''
     for i in range(14):
@@ -87,10 +94,12 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     '''
     
     #储存
+    
     Tools.SaveData.SaveData(conn,rela_subs,"user_subscribes_repo",["name","subbed_repo"])
     Tools.SaveData.SaveData(conn,rela_stars,"user_stars_repo",["name","starred_repo"])
     Tools.SaveData.SaveData(conn,rela_repos,"user_has_repo",["name","owned_repo"])
-    Tools.SaveData.UpdateData(conn,["finished"],"tasks_user_repo_relas",["status"],"id=%s"%(taskid))
+    Tools.SaveData.SaveData(conn,rela_repos,"user_relas_following",["name","following_user"])
+    Tools.SaveData.UpdateData(conn,[user_status],"tasks_user",["status"],"id=%s"%(taskid))
     
     print threadname,g.rate_limiting,"successfully saved usernames of task",taskid,time.ctime()
 
@@ -120,14 +129,14 @@ def create_queue():
     #复制任务队列
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
     cur=conn.cursor()
-    cmd="select id from tasks_user_repo_relas"
+    cmd="select id from tasks_user"
     item_count=cur.execute(cmd)
     if item_count==0:
         cmd="select id,name from active_users_10"
         cur.execute(cmd)
         data=cur.fetchall()
         data=map(lambda x:(x[0],x[1],"unfinished"),data)
-        cmd="insert into tasks_user_repo_relas(id,name,status) values(%s,%s,%s)"""
+        cmd="insert into tasks_user(id,name,status) values(%s,%s,%s)"""
         #数据分批导入
         data_volume=len(data)
         batch=data_volume/1000+1
@@ -136,7 +145,7 @@ def create_queue():
             conn.commit()
     
     #读取任务信息
-    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user_repo_relas where status='unfinished' and id<=1000")
+    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user where status='unfinished' and id<=10")
     #构建任务队列
     que=Queue.Queue()
     task_count=0
