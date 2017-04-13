@@ -58,11 +58,9 @@ def get_paras():
 
 
 def create_queue():
-    #创建队列
-    conn=Tools.DatabaseSupport.GenerateConn(dbname="test",host="10.2.1.26")
-    rangeid=(1,100)
     #读取任务信息
-    tasks=Tools.LoadData.LoadDataByIdRange(conn,"courseabstracts",["id","name"],rangeid)
+    tasks=Tools.TxtIO.Read("..\\files\\zxchnlc course urls.txt")
+    tasks=map(lambda x:[int(x[0]),x[1]],tasks)
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0
