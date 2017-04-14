@@ -11,7 +11,9 @@ import traceback
 
 class Crawler:
     
-    def __init__(self,paras):
+    def __init__(self,threadname,paras):
+        
+        self.threadname=threadname
         
         if paras["conn_settings"]!=None:
             self.conn=MySQLdb.Connection(
@@ -27,13 +29,17 @@ class Crawler:
         #是否使用Github账号
         if paras["github_account"]!=None:
             account=Tools.GithubAccountManagement.OccupyAnAccount(self.conn)
+            print threadname,"tried to fetch an account"
             if account==None:
                 print "no available account"
-                print "thread exits"
+                print self.threadname,"exits"
                 exit(999)
             self.g=Tools.GithubAccountManagement.CreateG(account[1],account[2])
             self.g.per_page=100
             self.gaccount=account
+        else:
+            self.g=None
+            self.gaccount=None
         
         #是否开启selenium模拟浏览器webdriver
         if paras["webdriver"]!=None:
@@ -53,37 +59,37 @@ class Crawler:
         self.driver.find_element_by_id("ImageButtonLogin").click()
     """
     
-    def Crawling(self,threadname,taskque,crawl_function):
+    def Crawling(self,threadname,taskque,run):
         download_count=0
+        status=1
         
         while not taskque.empty():
+            #创建错误任务队列
+            errortasks=[]
             try:
-                #创建错误任务队列
-                errortasks=[]
                 #开始爬取
-                crawl_function(threadname=threadname,taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                run(threadname=threadname,taskque=taskque,crawlerbody=self,errortasks=errortasks)
             except Exception,e:
-                print e
-                traceback.print_exc()
+                print "(Crawler)",e
+                #traceback.print_exc()
                 print threadname,"Error when crawling"
-                #将错误任务队列中的任务重新加入任务队列
-                for errortask in errortasks:
-                    taskque.put(errortask)
                 print "Failed mission has been put back into que"
-                if self.conn!=None:
-                    self.conn.close()
-                if self.driver!=None:
-                    self.driver.quit()
-                #返回失败信息、此次执行Crawling函数的成功下载数
-                return 0,download_count
+                status=0
+                break
             
+            #将错误任务队列中的任务重新加入任务队列
+            for errortask in errortasks:
+                taskque.put(errortask)
             download_count+=1
                 
-                
         #队列已空，返回成功信息，程序结束
+        if self.g!=None:
+            Tools.GithubAccountManagement.ReleaseAnAccount(self.conn,self.gaccount)
+            print threadname,"has released an account"
         if self.conn!=None:
             self.conn.close()
         if self.driver!=None:
             self.driver.quit()
-        return 1,download_count
+        
+        return status,download_count
         
