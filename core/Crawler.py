@@ -73,13 +73,13 @@ class Crawler:
                 print "(Crawler)",e
                 #traceback.print_exc()
                 print threadname,"Error when crawling"
-                #将错误任务队列中的任务重新加入任务队列
-                for errortask in errortasks:
-                    taskque.put(errortask)
                 print "Failed mission has been put back into que"
                 status=0
                 break
             
+            #将错误任务队列中的任务重新加入任务队列
+            for errortask in errortasks:
+                taskque.put(errortask)
             download_count+=1
                 
         #队列已空，返回成功信息，程序结束
