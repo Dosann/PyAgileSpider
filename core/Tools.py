@@ -419,12 +419,12 @@ class GithubAccountManagement:
         email_accounts=f.readlines()
         f.close()
         email_accounts=map(lambda x:x[:-1].split(split_char),email_accounts)
-        email_accounts=map(lambda x:(x[0],default_passwd,x[1],x[0].split('@')[1],time.strftime("%Y%m%d-%H%M%S")),email_accounts)
-        all_accounts=GithubAccountManagement.GetGithubAccounts()
+        email_accounts=map(lambda x:(x[0],default_passwd,x[1],x[0].split('@')[1],"unregistered",time.strftime("%Y%m%d-%H%M%S")),email_accounts)
+        all_accounts=GithubAccountManagement.GetGithubAccounts(conn)
         all_accounts_name=set(map(lambda x:x[1],all_accounts))
         for email_account in email_accounts:
             if email_account[0] not in all_accounts_name:
-                SaveData.SaveData(conn,[email_account],"github_accounts",["github_account","github_passwd","mail_passwd","mail_type","update_time"])
+                SaveData.SaveData(conn,[email_account],"github_accounts",["github_account","github_passwd","mail_passwd","mail_type","status","update_time"])
             else:
                 print "account %s already exists"%(email_account[0])
     
