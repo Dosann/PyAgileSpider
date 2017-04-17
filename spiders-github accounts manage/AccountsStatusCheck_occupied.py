@@ -54,7 +54,7 @@ def create_queue():
     taskque=Queue.Queue()
     #读取任务信息
     conn=Tools.DatabaseSupport.GenerateConn(dbname="grabgithub",host='10.2.1.26')
-    accounts=Tools.GithubAccountManagement.GetGithubAccounts(conn,select_condition="status='available'")
+    accounts=Tools.GithubAccountManagement.GetGithubAccounts(conn,select_condition="status='occupied'")
     conn.close()
     print "%s accounts loaded"%(len(accounts))
     for account in accounts:
