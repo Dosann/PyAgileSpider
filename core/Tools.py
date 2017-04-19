@@ -20,6 +20,7 @@ import github
 from os import getcwd
 import random
 import datetime
+import urllib
 
 class SeleniumSupport:
     
@@ -157,6 +158,14 @@ class SeleniumSupport:
         elif drivertype=="Ie":
             driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
         return driver
+
+class UrllibSupport:
+    
+    @staticmethod
+    def getHtml(url):
+        page = urllib.urlopen(url)
+        html = page.read()
+        return html
 
 class LoadData:
     
