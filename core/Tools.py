@@ -158,6 +158,14 @@ class SeleniumSupport:
             driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
         return driver
 
+class UrllibSupport:
+    
+    @staticmethod
+    def getHtml(url):
+        page = urllib.urlopen(url)
+        html = page.read()
+        return html
+
 class LoadData:
     
     #辅助函数： 生成特定格式字符串
