@@ -16,6 +16,6 @@ def db_construction(cur,tables):
 #添加表单
 
 def CreateT_urls(cur):
-    cmd="""create table t_urls(id int auto_increment primary key,url text)"""
+    cmd="""create table t_urls(id int auto_increment primary key,url text,status varchar(20))"""
     cur.execute(cmd)
 

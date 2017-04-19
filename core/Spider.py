@@ -25,7 +25,7 @@ def CrawlBegin(paras,threadname,taskque,crawl_function):
     while True:
         try:
             print threadname,"successfully started"
-            c=Crawler.Crawler(paras)
+            c=Crawler.Crawler(threadname,paras)
             status,download_count_iter=c.Crawling(threadname,taskque,crawl_function)
             download_count+=download_count_iter
             if status==1:
