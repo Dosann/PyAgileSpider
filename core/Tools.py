@@ -21,6 +21,7 @@ from os import getcwd
 import random
 import datetime
 import urllib2
+import codecs
 
 class SeleniumSupport:
     
@@ -310,6 +311,18 @@ class DatabaseSupport:
         cur.close()
         return True
 
+class TxtIO:
+    
+    #读取txt文件
+    @staticmethod
+    def Read(filename,split_char='\t',header_remove=True):
+        f=codecs.open(filename,'r','utf-8')
+        if header_remove==True:
+            f.readline()
+        data=f.readlines()
+        data=map(lambda x:x.split(split_char),data)
+        f.close()
+        return data
         
 class Filter:
     
@@ -452,6 +465,10 @@ class GithubAccountManagement:
         SaveData.UpdateData(conn,("occupied",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(account[0]))
         return account
     
+    @staticmethod
+    def ReleaseAnAccount(conn,account):
+        SaveData.UpdateData(conn,("available",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(account[0]))
+        
     @staticmethod
     def CreateG(account,passwd):
         g=github.Github(account,passwd)
