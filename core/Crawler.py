@@ -47,6 +47,10 @@ class Crawler:
         else:
             self.driver=None
 
+        #对该Crawler对象的其他初始化操作
+        if paras["crawler_initialize"]!=None:
+            paras["crawler_initialize"](self)
+        
     """
     def Login(self):
         self.driver.get(self.baseurl)
@@ -68,7 +72,7 @@ class Crawler:
             errortasks=[]
             try:
                 #开始爬取
-                run(threadname=threadname,taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
             except Exception,e:
                 print "(Crawler)",e
                 #traceback.print_exc()

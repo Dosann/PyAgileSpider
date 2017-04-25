@@ -37,10 +37,14 @@ def get_paras():
     #设置参数
     paras={}
     #数据库访问设置
+    paras["conn_settings"]=None
+    '''
     paras["conn_settings"]={"dbname":"test",
-                             'host':"10.2.1.26",
+                             'host':"localhost",
                              'user':'root',
                              'passwd':'123456'}
+    '''
+    
     #线程数
     paras["threadnumber"]=10
     
@@ -50,12 +54,13 @@ def get_paras():
     #使用github账号
     paras["github_account"]=None
     
-    #是否自动创建表单
-    paras["db_construction"]=True
-    
+    #是否自动创建表单，paras["conn_settings"]为None时必须设为None
+    paras["db_construction"]=None
+         
+    #Crawler对象的其他初始化操作(登陆之类的)
+    paras["crawler_initialize"]=CrawlerInitialize
     
     return paras
-
 
 def create_queue():
     #读取任务信息
@@ -72,6 +77,11 @@ def create_queue():
             
     
     return que
+
+
+def CrawlerInitialize(crawlerbody):
+    pass
+    
 
 if __name__=='__main__':
     Spider.main(get_paras(),create_queue,run,mode=1)
