@@ -265,7 +265,7 @@ class SaveData:
         cur=conn.cursor()
         equalstr=""
         columncount=len(columns)
-        columntype=map(lambda x:type(x),columns)
+        columntype=map(lambda x:type(x),data)
         for i in range(columncount):
             if columntype[i]==str or columntype[i]==unicode:
                 equalstr+="""%s="%s","""%(columns[i],data[i])
