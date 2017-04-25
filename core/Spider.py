@@ -96,6 +96,9 @@ def ParasComplement(paras):
     
     if "webdriver" not in paras:
         paras["webdriver"]=None
+    if "loadimage" not in paras:
+        paras["loadimage"]=True
+    
     
     conn_settings={'host':"localhost",
                    'dbname':"mysql",

@@ -43,7 +43,7 @@ class Crawler:
 
         #是否开启selenium模拟浏览器webdriver
         if paras["webdriver"]!=None:
-            self.driver=Tools.SeleniumSupport.CreateWebdriver(paras["webdriver"])
+            self.driver=Tools.SeleniumSupport.CreateWebdriver(paras["webdriver"],loadimage=paras["loadimage"])
         else:
             self.driver=None
 
@@ -75,7 +75,7 @@ class Crawler:
                 run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
             except Exception,e:
                 print "(Crawler)",e
-                #traceback.print_exc()
+                traceback.print_exc()
                 print threadname,"Error when crawling"
                 print "Failed mission has been put back into que"
                 status=0
