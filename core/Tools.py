@@ -20,6 +20,7 @@ import github
 from os import getcwd
 import random
 import datetime
+import urllib2
 import codecs
 import traceback
 import sys
@@ -174,7 +175,22 @@ class SeleniumSupport:
         elif drivertype=="Ie":
             driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
         return driver
-
+    
+class UrllibSupport:
+    
+    @staticmethod
+    def getHtml(url):
+        
+        send_headers = {
+         'User-Agent':'Mozilla/5.0 (Windows NT 6.2; rv:16.0) Gecko/20100101 Firefox/16.0',
+         'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+         'Connection':'keep-alive'
+        }
+        req=urllib2.Request(url,headers=send_headers)
+        page = urllib2.urlopen(req)
+        html = page.read()
+        return html
+    
 class LoadData:
     
     #辅助函数： 生成特定格式字符串
