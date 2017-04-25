@@ -21,6 +21,8 @@ from os import getcwd
 import random
 import datetime
 import codecs
+import traceback
+import sys
 
 class SeleniumSupport:
     
@@ -81,33 +83,47 @@ class SeleniumSupport:
         while driver.find_element_by_xpath("""//*[@id="divlist"]/ul/li[1]/div[1]/a""").text==reference:
             time.sleep(0.5)
     
+    #获取某个元素对象
+    @staticmethod
+    def GetElementByXpath(driver,xpath,option=None):
+        try:
+            SeleniumSupport.WaitUntilPresence(driver,xpath)
+            element=driver.find_element_by_xpath(xpath)
+            return element
+        except:
+            traceback.print_exc()
+            if option=="Abandon":#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
+                return None
+            else:
+                sys.exit('Abandon:SeleniumSupport Error')
+    
     #获取某个对象的text
     @staticmethod
     def GetTextByXpath(driver,xpath,option=None):#通过xpath定位
-        if option=="Abandon":#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
-            try:
-                SeleniumSupport.WaitUntilPresence(driver,xpath)
-                txt=driver.find_element_by_xpath(xpath).text
-                return strip(txt)
-            except:
-                return None
-        else:
+        
+        try:
             SeleniumSupport.WaitUntilPresence(driver,xpath)
             txt=driver.find_element_by_xpath(xpath).text
             return strip(txt)
+        except:
+            traceback.print_exc()
+            if option=="Abandon":#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
+                return None
+            else:
+                sys.exit('Abandon:SeleniumSupport Error')
+    
     @staticmethod
     def GetTextByTagname(driver,tagname,option=None):#通过tagname定位
-        if option=="Abandon":
-            try:
-                SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
-                txt=driver.find_element_by_tag_name(tagname).text
-                return strip(txt)
-            except:
-                return None
-        else:
+        try:
             SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
             txt=driver.find_element_by_tag_name(tagname).text
             return strip(txt)
+        except:
+            traceback.print_exc()
+            if option=="Abandon":
+                return None
+            else:
+                sys.exit('Abandon:SeleniumSupport Error')
             
     #获取某个对象的某个attribute
     @staticmethod
@@ -249,7 +265,7 @@ class SaveData:
         cur=conn.cursor()
         equalstr=""
         columncount=len(columns)
-        columntype=map(lambda x:type(x),columns)
+        columntype=map(lambda x:type(x),data)
         for i in range(columncount):
             if columntype[i]==str or columntype[i]==unicode:
                 equalstr+="""%s="%s","""%(columns[i],data[i])

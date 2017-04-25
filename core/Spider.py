@@ -53,6 +53,7 @@ def main(paras,create_queue,crawl_function,mode=1):
                                                 charset=paras["conn_settings"]["charset"])
         tablenames=Tools.DatabaseSupport.GetTableNames(conn)
         dbmanagement.db_construction(conn.cursor(),tablenames)
+        conn.commit()
         conn.close()
     
     #创建任务队列
@@ -115,5 +116,8 @@ def ParasComplement(paras):
         paras["db_construction"]=None
     elif paras["db_construction"]==True:
         paras["db_construction"]=dbmanagement.db_construction
+    
+    if "crawler_initialize" not in paras:
+        paras["crawler_initialize"]=None
     
     return paras
