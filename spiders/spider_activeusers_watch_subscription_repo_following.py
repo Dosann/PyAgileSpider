@@ -17,12 +17,11 @@ from random import random
 
 
 #从队列中获取任务，编写与该任务相关的信息提取代码
-def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
+def crawl_userdetails(taskque,crawlerbody,errortasks):
 
     conn=crawlerbody.conn
     g=crawlerbody.g
-    
-    user_status="finished"
+    threadname=crawlerbody.threadname
     
 
     #检测当前g的状态，若rate_limiting[1]低于100，更换账号
@@ -55,41 +54,88 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     length_constraint=[int,50,50]
     '''
     
-    taskid,username=taskque.get()
+    task=taskque.get()
+    user=g.get_user(task[1])
+    gfollowed=user.get_followers()
+    gfollowing=user.get_following()
+    gsubs=user.get_subscriptions()
+    gstars=user.get_starred()
+    grepos=user.get_repos()
+
+
+    
     try:
-        user=g.get_user(username)
-        gsubs=user.get_subscriptions()
-        gstars=user.get_starred()
-        grepos=user.get_repos()
-        gfollowing=user.get_following()
-        rela_subs=[]
-        rela_stars=[]
-        rela_repos=[]
-        rela_followings=[]
-        for gsu in gsubs:
-            rela_subs.append((username,unicode(gsu)[22:-2][:200]))
-        for gst in gstars:
-            rela_stars.append((username,unicode(gst)[22:-2][:200]))
-        for gre in grepos:
-            rela_repos.append((username,unicode(gre)[22:-2].split('/')[1][:200]))
-        for gfing in gfollowing:
-            rela_followings.append((username,unicode(gfing)[17:-2]))
-            
+        rela_followed=[]
+        if task[2]!=1:
+            for gfed in gfollowed:
+                rela_followed.append((task[1],unicode(gfed)[17:-2]))
+            Tools.SaveData.SaveData(conn,rela_followed,"user_relas_followed",["name","follower_user"])
+            Tools.SaveData.UpdateData(conn,[1],"tasks_user",["s_followed"],"id=%s"%(task[0]))
+            print("successfully saved followers of task %s"%(task[0]))
     except Exception,e:
-        print e
-        if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
-            user_status="not found"
-            print "can not found user %s"%(username)
-        elif 403 in e:
-            errortasks.append((taskid,username))
-            print "abuse error."
-            time.sleep(random()*5+5)
-            print "abuse stop finished"
-        else:
-            #未知错误，将该任务添加到错误任务列表，继续下一个任务
-            errortasks.append((taskid,username))
-            print "unexpected error. task %s has been put back to taskque"%(taskid)
+        print(e)
+        print("error when requesting followers in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks,conn)
         return
+    
+    try:
+        rela_following=[]
+        if task[3]!=1:
+            for gfing in gfollowing:
+                rela_following.append((task[1],unicode(gfing)[17:-2]))
+            Tools.SaveData.SaveData(conn,rela_following,"user_relas_following",["name","following_user"])
+            Tools.SaveData.UpdateData(conn,[1],"tasks_user",["s_following"],"id=%s"%(task[0]))
+            print("successfully saved followings of task %s"%(task[0]))
+    except Exception,e:
+        print(e)
+        print("error when requesting followings in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks)
+        return
+    
+    try:
+        rela_subs=[]
+        if task[4]!=1:
+            for gsu in gsubs:
+                rela_subs.append((task[1],unicode(gsu)[22:-2][:200]))
+            Tools.SaveData.SaveData(conn,rela_subs,"user_subscribes_repo",["name","subbed_repo"])
+            Tools.SaveData.UpdateData(conn,[1],"tasks_user",["s_watch"],"id=%s"%(task[0]))
+            print("successfully saved watchers of task %s"%(task[0]))
+    except Exception,e:
+        print(e)
+        print("error when requesting watchers in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks)
+        return
+        
+    try:
+        rela_stars=[]
+        if task[5]!=1:
+            for gst in gstars:
+                rela_stars.append((task[1],unicode(gst)[22:-2][:200]))
+            Tools.SaveData.SaveData(conn,rela_stars,"user_stars_repo",["name","starred_repo"])
+            Tools.SaveData.UpdateData(conn,[1],"tasks_user",["s_star"],"id=%s"%(task[0]))
+            print("successfully saved stargazers of task %s"%(task[0]))
+    except Exception,e:
+        print(e)
+        print("error when requesting stargazers in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks)
+        return
+        
+    try:
+        rela_repos=[]
+        if task[6]!=1:
+            for gre in grepos:
+                rela_repos.append((task[1],unicode(gre)[22:-2].split('/')[1][:200]))
+            Tools.SaveData.SaveData(conn,rela_repos,"user_has_repo",["name","owned_repo"])
+            Tools.SaveData.UpdateData(conn,[1],"tasks_user",["s_has"],"id=%s"%(task[0]))
+            print("successfully saved repos of task %s"%(task[0]))
+    except Exception,e:
+        print(e)
+        print("error when requesting repos in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks)
+        return
+        
+        
+        
     
     '''
     for i in range(14):
@@ -101,13 +147,22 @@ def crawl_userdetails(threadname,taskque,crawlerbody,errortasks):
     
     #储存
     
-    Tools.SaveData.SaveData(conn,rela_subs,"user_subscribes_repo",["name","subbed_repo"])
-    Tools.SaveData.SaveData(conn,rela_stars,"user_stars_repo",["name","starred_repo"])
-    Tools.SaveData.SaveData(conn,rela_repos,"user_has_repo",["name","owned_repo"])
-    Tools.SaveData.SaveData(conn,rela_followings,"user_relas_following",["name","following_user"])
-    Tools.SaveData.UpdateData(conn,[user_status],"tasks_user",["status"],"id=%s"%(taskid))
-    
-    print threadname,g.rate_limiting,"successfully saved usernames of task",taskid,time.ctime()
+    Tools.SaveData.UpdateData(conn,["finished"],"tasks_user",["status"],"id=%s"%(task[0]))
+    print threadname,g.rate_limiting,"successfully saved relationships of task",task[0],time.ctime()
+
+def ExceptionHandle_Network(e,task,errortasks,conn):
+    if 404 in e:#无法找到用户名（用户已注销），添加空记录，继续下一个任务
+        print "can not found user %s:%s"%(task[0],task[1])
+        Tools.SaveData.UpdateData(conn,["not found"],"tasks_user",["status"],"id=%s"%(task[0]))
+    elif 403 in e:
+        errortasks.append(task)
+        print "abuse error."
+        time.sleep(random()*5+5)
+        print "abuse stop finished"
+    else:
+        #未知错误，将该任务添加到错误任务列表，继续下一个任务
+        errortasks.append(task)
+        print "unexpected error. task %s has been put back to taskque"%(task[0])
 
 #设置参数
 def get_paras():
@@ -118,7 +173,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=35
+    paras["threadnumber"]=20
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号
@@ -153,13 +208,13 @@ def create_queue():
     #读取任务信息
     start_id=raw_input(unicode("输入id最小值:",'utf-8').encode('gbk'))
     end_id=raw_input(unicode("输入id最大值:",'utf-8').encode('gbk'))
-    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name from tasks_user where status='unfinished' and id>=%s and id<=%s"%(start_id,end_id))
+    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name,s_followed,s_following,s_watch,s_star,s_has from tasks_user where status='unfinished' and id>=%s and id<=%s"%(start_id,end_id))
     #构建任务队列
     que=Queue.Queue()
     task_count=0
     for user in users:
         task_count+=1
-        que.put([user[0],user[1]])
+        que.put(user)
     print task_count,"tasks has been loaded"
     del users
             

@@ -5,8 +5,6 @@ Created on Fri Mar 17 16:34:22 2017
 Email: duxin_be@outlook.com
 
 """
-from sys import path
-path.append('/spiders_repodetails')
 import GLOBAL
 
 
