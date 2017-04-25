@@ -5,8 +5,8 @@ Created on Mon Apr 24 10:54:30 2017
 @author: duxin
 """
 
-from sys import path
-path.append("../")
+import sys
+sys.path.append("../")
 from core import Tools
 import time
 
@@ -54,6 +54,21 @@ def GrabApidetails(crawlerbody,reponame):
     v_recordtime=unicode(time.strftime('%Y-%m-%d %H:%M:%S'))
     c_ownerid=rd['owner']['id']
     v_ownertype=rd['owner']['type']
+    
+    
+    try:
+        gcons=repo.get_contributors()
+        ccount=0
+        for gc in gcons:
+            ccount+=1
+        c_contributors=ccount
+    except Exception,e:
+        if 403 in e and hasattr(e,'data') and 'too large' in e.data['message']:
+            c_contributors=99999999
+        else:
+            sys.exit("888: unexpected error when requesting contributors")
+    print('c_contributors: %s'%(c_contributors))
+    
     language_infos=sorted(repo.get_languages().items(),key=lambda x:x[1],reverse=1)
     codesize=0
     for lang in language_infos:
@@ -68,7 +83,7 @@ def GrabApidetails(crawlerbody,reponame):
         v_langdetails+=[None,None,None]
     
     valuelist=[c_repoid,c_size,c_hasdownloads,c_hasissues,c_haswiki,c_private,
-               v_createtime,v_pushtime,v_updatetime,v_recordtime,c_ownerid,v_ownertype,
+               v_createtime,v_pushtime,v_updatetime,v_recordtime,c_ownerid,v_ownertype,c_contributors,
                c_codesize,c_langcount]+v_langdetails
     return valuelist
     

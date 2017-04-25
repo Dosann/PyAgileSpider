@@ -13,7 +13,7 @@ import sys
 
 
 def GrabWeb1(driver,url):
-    #需跳转至Web1,挖取proj的 watch,star,fork,mainbranch_commits数 branches数 releases数 contributors数 license名 编程语言信息
+    #需跳转至Web1,挖取proj的 watch,star,fork,mainbranch_commits数 branches数 releases数 license名 编程语言信息
     try:
         driver.get("https://www.github.com/"+url)
     except:
@@ -28,6 +28,8 @@ def GrabWeb1(driver,url):
     c_mbcommits=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[1]/a/span"""),returncount=1)
     c_branches=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[2]/a/span"""),returncount=1)
     c_releases=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[3]/a/span"""),returncount=1)
+    
+    '''
     for i in range(5):
         c_contributors=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[4]/a/span"""),returncount=1)
         if c_contributors!='':
@@ -36,6 +38,7 @@ def GrabWeb1(driver,url):
     if c_contributors=='':
         print('can not load contributor count: %s'%(url))
         c_contributors=None
+    '''
     try:
         driver.find_element_by_xpath("""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
         v_license=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
@@ -43,7 +46,7 @@ def GrabWeb1(driver,url):
         print "element exists not: license"
         v_license=None
 
-    valuelist0=[c_watchers,c_stars,c_forks,c_mbcommits,c_branches,c_releases,c_contributors,v_license]
+    valuelist0=[c_watchers,c_stars,c_forks,c_mbcommits,c_branches,c_releases,v_license]
     return valuelist0
     '''
     #2 编程语言信息 langcount,mainlang,mlangper,seclang,slangper,thilang,tlangper

@@ -42,7 +42,7 @@ def run(taskque,crawlerbody,errortasks):
             Tools.SaveData.UpdateData(conn,details,"repodetails_%s"%(date),
                                     ["id","user","repo","repoid","size","has_downloads","has_issues","has_wiki",
                                     "private","createtime","pushtime","updatetime","recordtime",
-                                    "ownerid","ownertype","codesize","langcount",
+                                    "ownerid","ownertype","contributors","codesize","langcount",
                                     "language","mlangsize","mlangper","seclang","slangsize","slangper",
                                     "thilang","tlangsize","tlangper","_api_finished"],"id=%s"%(task[0]))
             taskstatus[0]=1
@@ -54,7 +54,7 @@ def run(taskque,crawlerbody,errortasks):
             webdetails_3=gws.GrabWeb3(driver,repofullname)
             details=webdetails_1+webdetails_2+webdetails_3+[1]
             Tools.SaveData.UpdateData(conn,details,"repodetails_%s"%(date),
-                                          ["watchers","stars","forks","mainbranch_commits","branches","releases","contributors","license",
+                                          ["watchers","stars","forks","mainbranch_commits","branches","releases","license",
                                            "open_issues","close_issues","open_pull","close_pull","_web_finished"],
                                            "id=%s"%task[0])
             taskstatus[1]=1
