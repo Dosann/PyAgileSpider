@@ -87,7 +87,7 @@ def get_paras():
                              'passwd':'123456'}
     
     #线程数
-    paras["threadnumber"]=10
+    paras["threadnumber"]=20
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -135,6 +135,6 @@ def CrawlerInitialize(crawlerbody):
 
 def main():
     GLOBAL.date='20170426'
-    Spider.main(get_paras(),create_queue,run,mode=2)
+    Spider.main(get_paras(),create_queue,run,mode=1)
 
 main()
