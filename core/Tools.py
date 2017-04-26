@@ -22,6 +22,7 @@ import random
 import datetime
 import urllib2
 import codecs
+from sys import exit as sexit
 
 class SeleniumSupport:
     
@@ -82,33 +83,45 @@ class SeleniumSupport:
         while driver.find_element_by_xpath("""//*[@id="divlist"]/ul/li[1]/div[1]/a""").text==reference:
             time.sleep(0.5)
     
+    #获取某个对象
+    @staticmethod
+    def GetElementByXpath(driver,xpath,option=None,wait=True):
+        try:
+            if wait==True:
+                SeleniumSupport.WaitUntilPresence(driver,xpath)
+            element=driver.find_element_by_xpath(xpath)
+            return element
+        except:
+            if option=="Abandon":
+                return None
+            else:
+                sexit('Abandoned!')
+    
     #获取某个对象的text
     @staticmethod
-    def GetTextByXpath(driver,xpath,option=None):#通过xpath定位
-        if option=="Abandon":#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
-            try:
+    def GetTextByXpath(driver,xpath,option=None,wait=True):#通过xpath定位
+        try:#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
+            if wait==True:
                 SeleniumSupport.WaitUntilPresence(driver,xpath)
-                txt=driver.find_element_by_xpath(xpath).text
-                return strip(txt)
-            except:
-                return None
-        else:
-            SeleniumSupport.WaitUntilPresence(driver,xpath)
             txt=driver.find_element_by_xpath(xpath).text
             return strip(txt)
-    @staticmethod
-    def GetTextByTagname(driver,tagname,option=None):#通过tagname定位
-        if option=="Abandon":
-            try:
-                SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
-                txt=driver.find_element_by_tag_name(tagname).text
-                return strip(txt)
-            except:
+        except:
+            if option=="Abandon":
                 return None
-        else:
-            SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
+            else:
+                sexit('Abandoned!')
+    @staticmethod
+    def GetTextByTagname(driver,tagname,option=None,wait=True):#通过tagname定位
+        try:
+            if wait==True:
+                SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
             txt=driver.find_element_by_tag_name(tagname).text
             return strip(txt)
+        except:
+            if option=="Abandon":
+                return None
+            else:
+                sexit('Abandoned!')
             
     #获取某个对象的某个attribute
     @staticmethod
