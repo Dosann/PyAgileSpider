@@ -8,7 +8,7 @@ Email: duxin_be@outlook.com
 
 from sys import path
 path.append("../")
-from sys import exit
+from sys import exit as sexit
 from core import Tools
 from core import Spider
 import time
@@ -45,7 +45,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
             else:
                 print "no available account in accountque.",time.ctime()
                 print threadname,"exits"
-                exit(999)
+                sexit(999)
         else:
             break
     
@@ -89,7 +89,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
     except Exception,e:
         print(e)
         print("error when requesting followings in task %s"%(task[0]))
-        ExceptionHandle_Network(e,task,errortasks)
+        ExceptionHandle_Network(e,task,errortasks,conn)
         return
     
     try:
@@ -103,7 +103,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
     except Exception,e:
         print(e)
         print("error when requesting watchers in task %s"%(task[0]))
-        ExceptionHandle_Network(e,task,errortasks)
+        ExceptionHandle_Network(e,task,errortasks,conn)
         return
         
     try:
@@ -117,7 +117,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
     except Exception,e:
         print(e)
         print("error when requesting stargazers in task %s"%(task[0]))
-        ExceptionHandle_Network(e,task,errortasks)
+        ExceptionHandle_Network(e,task,errortasks,conn)
         return
         
     try:
@@ -131,7 +131,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
     except Exception,e:
         print(e)
         print("error when requesting repos in task %s"%(task[0]))
-        ExceptionHandle_Network(e,task,errortasks)
+        ExceptionHandle_Network(e,task,errortasks,conn)
         return
         
         
