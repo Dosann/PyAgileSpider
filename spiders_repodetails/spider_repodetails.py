@@ -58,7 +58,7 @@ def run(taskque,crawlerbody,errortasks):
                                            "open_issues","close_issues","open_pull","close_pull","_web_finished"],
                                            "id=%s"%task[0])
             taskstatus[1]=1
-        print("successfully updated web details of repo %s"%(task[0]))
+        print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
     except Exception,e:
         traceback.print_exc()
         print(e)
