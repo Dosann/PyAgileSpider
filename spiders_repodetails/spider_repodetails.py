@@ -90,7 +90,8 @@ def get_paras():
     paras["threadnumber"]=10
     
     #不开启webdriver
-    paras["webdriver"]="Chrome"
+    paras["webdriver"]="PhantomJS"
+    paras["loadimage"]=False
     
     #使用github账号
     paras["github_account"]=True
@@ -134,6 +135,6 @@ def CrawlerInitialize(crawlerbody):
 
 def main():
     GLOBAL.date='20170426'
-    Spider.main(get_paras(),create_queue,run,mode=1)
+    Spider.main(get_paras(),create_queue,run,mode=2)
 
 main()

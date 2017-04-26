@@ -43,7 +43,7 @@ class Crawler:
 
         #是否开启selenium模拟浏览器webdriver
         if paras["webdriver"]!=None:
-            self.driver=Tools.SeleniumSupport.CreateWebdriver(paras["webdriver"])
+            self.driver=Tools.SeleniumSupport.CreateWebdriver(paras["webdriver"],loadimage=paras["loadimage"])
         else:
             self.driver=None
 

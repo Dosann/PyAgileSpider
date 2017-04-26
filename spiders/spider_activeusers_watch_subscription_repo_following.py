@@ -214,7 +214,7 @@ def create_queue():
     #读取任务信息
     start_id=raw_input(unicode("输入id最小值:",'utf-8').encode('gbk'))
     end_id=raw_input(unicode("输入id最大值:",'utf-8').encode('gbk'))
-    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name,s_followed,s_following,s_watch,s_star,s_has from tasks_user where status='unfinished' and s_followed is null and id>=%s and id<=%s"%(start_id,end_id))
+    users=Tools.LoadData.LoadDataByCmd(conn,"select id,name,s_followed,s_following,s_watch,s_star,s_has from tasks_user where status='unfinished' and id>=%s and id<=%s"%(start_id,end_id))
     #构建任务队列
     que=Queue.Queue()
     task_count=0
