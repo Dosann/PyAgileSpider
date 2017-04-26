@@ -69,7 +69,7 @@ def run(taskque,crawlerbody,errortasks):
         traceback.print_exc()
         print(e)
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
-            Tools.SaveData.UpdateData(conn,[-1,-1],"repodetails_taskstatus",["_api_finished","_web_finished"],"id=%s"%(task[0]))
+            Tools.SaveData.UpdateData(conn,[-1,-1],"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
@@ -79,7 +79,7 @@ def run(taskque,crawlerbody,errortasks):
             errortasks.append(task)
             print("unexpected error(run). error task %s has been put back to taskque"%(task[0]))
     finally:
-        Tools.SaveData.UpdateData(conn,taskstatus,"repodetails_taskstatus",["_api_finished","_web_finished"],"id=%s"%(task[0]))
+        Tools.SaveData.UpdateData(conn,taskstatus,"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
     
 
     
