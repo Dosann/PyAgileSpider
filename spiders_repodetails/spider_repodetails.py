@@ -65,11 +65,12 @@ def run(taskque,crawlerbody,errortasks):
                 break
             taskstatus[1]=1
         print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
+    except SystemExit,e:
+        pass
     except Exception,e:
         traceback.print_exc()
-        print(e)
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
-            Tools.SaveData.UpdateData(conn,[-1,-1],"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
+            taskstatus=[None,None]
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
@@ -93,7 +94,7 @@ def get_paras():
                              'passwd':'123456'}
     
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=30
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Mon Apr 24 10:35:03 2017
 
@@ -16,19 +16,22 @@ def GrabWeb1(driver,url):
     #需跳转至Web1,挖取proj的 watch,star,fork,mainbranch_commits数 branches数 releases数 license名 编程语言信息
     try:
         driver.get("https://www.github.com/"+url)
-    except:
+    except Exception,e:
+        print(e)
         sys.exit("can not load the page: %s."%(url))
         
-    #0 watchers,stars,forks数
-    c_watchers=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[1]/form/div[2]/a[2]"""),returncount=1)
-    c_stars=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[2]/div/form[2]/a"""),returncount=1)
-    c_forks=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[3]/a"""),returncount=1)
-    
-    #1 mainbranch_commits数 branches数 releases数 contributors数 license名
-    c_mbcommits=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[1]/a/span"""),returncount=1)
-    c_branches=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[2]/a/span"""),returncount=1)
-    c_releases=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[3]/a/span"""),returncount=1)
-    
+    try:
+        #0 watchers,stars,forks数
+        c_watchers=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[1]/form/div[2]/a[2]"""),returncount=1)
+        c_stars=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[2]/div/form[2]/a"""),returncount=1)
+        c_forks=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[3]/a"""),returncount=1)
+        
+        #1 mainbranch_commits数 branches数 releases数 contributors数 license名
+        c_mbcommits=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[1]/a/span"""),returncount=1)
+        c_branches=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[2]/a/span"""),returncount=1)
+        c_releases=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[3]/a/span"""),returncount=1)
+    except:
+        sys.exit("Error in Webcrawler")
     '''
     for i in range(5):
         c_contributors=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[4]/a/span"""),returncount=1)
@@ -97,7 +100,7 @@ def GrabWeb2(driver,url):
         driver.find_element_by_xpath("""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]""")
         c_openissues=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]"""),returncount=1)
         c_closeissues=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[2]"""),returncount=1)
-    except Exception,e:
+    except:
         print("element exists not: issues")
         c_openissues=0
         c_closeissues=0
@@ -121,7 +124,7 @@ def GrabWeb3(driver,url):
         driver.find_element_by_xpath("""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]""")
         c_openpulls=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]"""),returncount=1)
         c_closepulls=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[2]"""),returncount=1)
-    except Exception,e:
+    except:
         print("element exists not: pulls")
         c_openpulls=0
         c_closepulls=0

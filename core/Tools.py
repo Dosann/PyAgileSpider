@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Thu Mar 09 11:19:57 2017
 
@@ -22,7 +22,7 @@ import random
 import datetime
 import urllib2
 import codecs
-from sys import exit as sexit
+import sys
 
 class SeleniumSupport:
     
@@ -95,7 +95,7 @@ class SeleniumSupport:
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned')
     
     #获取某个对象的text
     @staticmethod
@@ -109,7 +109,7 @@ class SeleniumSupport:
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned')
     @staticmethod
     def GetTextByTagname(driver,tagname,option=None,wait=True):#通过tagname定位
         try:
@@ -121,7 +121,7 @@ class SeleniumSupport:
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned!')
             
     #获取某个对象的某个attribute
     @staticmethod
