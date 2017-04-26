@@ -5,12 +5,14 @@ Created on Fri Mar 17 16:34:22 2017
 Email: duxin_be@outlook.com
 
 """
+import GLOBAL
 
 
 def db_construction(cur,tables):
+    date=GLOBAL.date
+    print("Database initializing...")
     
     #若表单不存在，则添加
-    
     if "userdetails" not in tables:
         CreateUserdetails(cur)
     if "user_relas_followed" not in tables:
@@ -26,7 +28,12 @@ def db_construction(cur,tables):
     #task_user记录 spider_activeusers_watch_subscription_repo_following.py 的完成情况
     if "tasks_user" not in tables:
         CreateTasksUser(cur)
+    
+    if "repodetails_%s"%(date) not in tables:
+        CreateRepodetails_date(cur)
+        InitializeRepodetails_date(cur)
 
+    print("Database initialization finished")
 #添加表单
 
 def CreateUserdetails(cur):
@@ -89,3 +96,54 @@ def CreateTasksUser(cur):
             name varchar(50),
             status varchar(20))"""
     cur.execute(cmd)
+
+def CreateRepodetails_date(cur):
+    date=GLOBAL.date
+    cmd="""create table repodetails_%s(
+            id int primary key,
+            user varchar(40),
+            repo varchar(200),
+            repoid int,
+            watchers int,
+            stars int,
+            forks int,
+            contributors int,
+            size int,
+            branches int,
+            releases int,
+            open_issues int,
+            close_issues int,
+            open_pull int,
+            close_pull int,
+            mainbranch_commits int,
+            license varchar(20),
+            has_downloads tinyint,
+            has_issues tinyint,
+            has_wiki tinyint,
+            private tinyint,
+            createtime varchar(20),
+            pushtime varchar(20),
+            updatetime varchar(20),
+            recordtime varchar(20),
+            ownerid int,
+            ownertype varchar(13),
+            codesize int,
+            langcount int,
+            language varchar(30),
+            mlangsize int,
+            mlangper varchar(10),
+            seclang varchar(30),
+            slangsize int,
+            slangper varchar(10),
+            thilang varchar(30),
+            tlangsize int,
+            tlangper varchar(10),
+            _api_finished tinyint default 0,
+            _web_finished tinyint default 0)"""%(date)
+    cur.execute(cmd)
+
+def InitializeRepodetails_date(cur):
+    date=GLOBAL.date
+    cmd="insert into repodetails_%s(id,user,repo) select id,user,repo from good_repos"%(date)
+    cur.execute(cmd)
+            

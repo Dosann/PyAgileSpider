@@ -108,19 +108,18 @@ def get_paras():
 #创建队列
 def create_queue():
     conn=Tools.DatabaseSupport.GenerateConn("grabgithub",host="10.2.1.26")
-    rangeid=(1,10000000)
     #读取已完成的任务列表
     hasfinished_tasks=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select distinct(name) from user_relas_followed")))
     #读取任务信息
-    usernames=Tools.LoadData.LoadDataByIdRange(conn,"active_users_10",["name"],rangeid)
+    usernames=Tools.LoadData.LoadDataByCmd(conn,"select id,user from tasks_user where status!='not found'")
     #构建任务队列
     que=Queue.Queue()
     omited_items_count=0
     task_count=0
     for username in usernames:
-        if username[0] not in hasfinished_tasks:
+        if username[1] not in hasfinished_tasks:
             task_count+=1
-            que.put([task_count,username[0]])
+            que.put(username)
         else:
             omited_items_count+=1
     print omited_items_count,"items has been omited"
