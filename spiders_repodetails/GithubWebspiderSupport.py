@@ -42,11 +42,19 @@ def GrabWeb1(driver,url):
     try:
         driver.find_element_by_xpath("""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
         v_license=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
-    except Exception,e:
+    except:
         print "element exists not: license"
         v_license=None
-
-    valuelist0=[c_watchers,c_stars,c_forks,c_mbcommits,c_branches,c_releases,v_license]
+    
+    try:
+        driver.find_element_by_xpath("""//*[@id="readme"]/article""")
+        v_readme=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="readme"]/article""")
+    except:
+        print "element exists not: readme"
+        v_readme=None
+    
+    
+    valuelist0=[c_watchers,c_stars,c_forks,c_mbcommits,c_branches,c_releases,v_license,v_readme]
     return valuelist0
     '''
     #2 编程语言信息 langcount,mainlang,mlangper,seclang,slangper,thilang,tlangper

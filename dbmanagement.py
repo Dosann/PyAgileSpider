@@ -138,6 +138,7 @@ def CreateRepodetails_date(cur):
             thilang varchar(30),
             tlangsize int,
             tlangper varchar(10),
+            readme text,
             _api_finished tinyint default 0,
             _web_finished tinyint default 0)"""%(date)
     cur.execute(cmd)

@@ -8,7 +8,7 @@ Email: duxin_be@outlook.com
 
 from sys import path
 path.append("../")
-from sys import exit
+from sys import exit as sexit
 from core import Tools
 from core import Spider
 import time
@@ -45,7 +45,7 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
             else:
                 print "no available account in accountque.",time.ctime()
                 print threadname,"exits"
-                exit(999)
+                sexit(999)
         else:
             break
     
