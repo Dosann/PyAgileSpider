@@ -53,17 +53,23 @@ def run(taskque,crawlerbody,errortasks):
             webdetails_2=gws.GrabWeb2(driver,repofullname)
             webdetails_3=gws.GrabWeb3(driver,repofullname)
             details=webdetails_1+webdetails_2+webdetails_3+[1]
-            Tools.SaveData.UpdateData(conn,details,"repodetails_%s"%(date),
-                                          ["watchers","stars","forks","mainbranch_commits","branches","releases","license","readme",
-                                           "open_issues","close_issues","open_pull","close_pull","_web_finished"],
-                                           "id=%s"%task[0])
+            while 1: #检查是否成功过滤掉readme中的emoji，若失败则将其设为'*contains emoji*'
+                try:
+                    Tools.SaveData.UpdateData(conn,details,"repodetails_%s"%(date),
+                                                  ["watchers","stars","forks","mainbranch_commits","branches","releases","license","readme",
+                                                   "open_issues","close_issues","open_pull","close_pull","_web_finished"],
+                                                   "id=%s"%task[0])
+                except Exception,e:
+                    print(e)
+                    details[7]=u'*contains emoji*'
+                break
             taskstatus[1]=1
         print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
     except Exception,e:
         traceback.print_exc()
         print(e)
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
-            Tools.SaveData.UpdateData(conn,[-1,-1],"repodetails_taskstatus",["_api_finished","_web_finished"])
+            Tools.SaveData.UpdateData(conn,[-1,-1],"repodetails_taskstatus",["_api_finished","_web_finished"],"id=%s"%(task[0]))
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."

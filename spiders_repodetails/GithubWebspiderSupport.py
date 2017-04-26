@@ -50,6 +50,7 @@ def GrabWeb1(driver,url):
         driver.find_element_by_xpath("""//*[@id="readme"]/article""")
         v_readme=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="readme"]/article""")
         v_readme=v_readme.replace("'","\\'").replace('"','\\"')
+        v_readme=Tools.Filter.FilterEmoji(v_readme)
     except:
         print "element exists not: readme"
         v_readme=None
