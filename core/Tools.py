@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Thu Mar 09 11:19:57 2017
 
@@ -22,7 +22,7 @@ import random
 import datetime
 import urllib2
 import codecs
-from sys import exit as sexit
+import sys
 
 class SeleniumSupport:
     
@@ -91,11 +91,12 @@ class SeleniumSupport:
                 SeleniumSupport.WaitUntilPresence(driver,xpath)
             element=driver.find_element_by_xpath(xpath)
             return element
-        except:
+        except Exception,e:
+            print(e)
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned')
     
     #获取某个对象的text
     @staticmethod
@@ -109,7 +110,7 @@ class SeleniumSupport:
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned')
     @staticmethod
     def GetTextByTagname(driver,tagname,option=None,wait=True):#通过tagname定位
         try:
@@ -121,7 +122,7 @@ class SeleniumSupport:
             if option=="Abandon":
                 return None
             else:
-                sexit('Abandoned!')
+                sys.exit('Abandoned!')
             
     #获取某个对象的某个attribute
     @staticmethod
@@ -151,26 +152,57 @@ class SeleniumSupport:
         
     #创建一个selenium的模拟浏览器webdriver
     @staticmethod
-    def CreateWebdriver(drivertype,path="..\\core\\webdrivers",loadimage=True,downloadpath=None):
+    def CreateWebdriver(drivertype,path="..\\core\\webdrivers\\",loadimage=True,downloadpath=None):
         if drivertype=="PhantomJS":
             if loadimage==False:
                 dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
                 dcap["phantomjs.page.settings.loadImages"]=False
-                driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        print("current path: %s"%(path+"phantomjs"))
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap)
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(executable_path=path+"phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.PhantomJS()
+                    except Exception,e:
+                         print(e)
         elif drivertype=="Chrome":
             if downloadpath!=None:
                 chromeOptions=webdriver.ChromeOptions()
                 prefs={"download.default_directory":downloadpath}
                 chromeOptions.add_experimental_option("prefs",prefs)
-                driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"\\chromedriver.exe")
+                try:
+                    driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        print("current path: %s"%(path+"chrome"))
+                        driver=webdriver.Chrome(desired_capabilities=dcap)
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.Chrome(executable_path=path+"\\chromedriver.exe")
+                try:
+                    driver=webdriver.Chrome(executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.Chrome()
+                    except Exception,e:
+                        print(e)
+                    
         elif drivertype=="Firefox":
-            driver=webdriver.Firefox(executable_path=path+"\\geckodriver.exe")
+            driver=webdriver.Firefox(executable_path=path+"geckodriver.exe")
         elif drivertype=="Ie":
-            driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
+            driver=webdriver.Ie(executable_path=path+"IEDriverServer.exe")
         return driver
     
 class UrllibSupport:
@@ -292,6 +324,9 @@ class SaveData:
         conn.commit()
         cur.close()
 
+
+
+
 class DatabaseSupport:
     
     #生成一个数据库链接
@@ -323,6 +358,13 @@ class DatabaseSupport:
         conn.commit()
         cur.close()
         return True
+
+    #写入mysql的操作log
+    @staticmethod
+    def WriteLog(cmd):
+        f=open("../files/MySQL.log",'a')
+        f.write(cmd+'\n')
+        f.close()
 
 class TxtIO:
     
@@ -367,8 +409,8 @@ class Filter:
             u"(\ud83d[\u0000-\uddff])|"  # symbols & pictographs (2 of 2)
             u"(\ud83d[\ude80-\udeff])|"  # transport & map symbols
             u"(\ud83c[\udde0-\uddff])"  # flags (iOS)
-            "+", flags=re.UNICODE)
-        s=emoji_pattern.sub(r'',s.decode('utf-8'))
+            ,flags=re.UNICODE)
+        s=emoji_pattern.sub(r'',s)
         return s
 
 
