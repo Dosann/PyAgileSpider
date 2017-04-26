@@ -173,7 +173,7 @@ def get_paras():
                              'user':'root',
                              'passwd':'123456'}
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=10
     #不开启webdriver
     paras["webdriver"]=None
     #使用的github账号

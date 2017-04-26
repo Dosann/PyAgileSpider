@@ -75,7 +75,7 @@ class Crawler:
                 run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
             except Exception,e:
                 print "(Crawler)",e
-                #traceback.print_exc()
+                traceback.print_exc()
                 print threadname,"Error when crawling"
                 print "Failed mission has been put back into que"
                 status=0
