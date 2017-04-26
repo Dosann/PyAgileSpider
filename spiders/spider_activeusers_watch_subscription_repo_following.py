@@ -54,13 +54,19 @@ def crawl_userdetails(taskque,crawlerbody,errortasks):
     length_constraint=[int,50,50]
     '''
     
-    task=taskque.get()
-    user=g.get_user(task[1])
-    gfollowed=user.get_followers()
-    gfollowing=user.get_following()
-    gsubs=user.get_subscriptions()
-    gstars=user.get_starred()
-    grepos=user.get_repos()
+    try:
+        task=taskque.get()
+        user=g.get_user(task[1])
+        gfollowed=user.get_followers()
+        gfollowing=user.get_following()
+        gsubs=user.get_subscriptions()
+        gstars=user.get_starred()
+        grepos=user.get_repos()
+    except Exception,e:
+        print(e)
+        print("error when requesting user in task %s"%(task[0]))
+        ExceptionHandle_Network(e,task,errortasks,conn)
+        return
 
 
     
