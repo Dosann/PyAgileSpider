@@ -25,13 +25,20 @@ def GrabWeb1(driver,url):
         c_watchers=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[1]/form/div[2]/a[2]"""),returncount=1)
         c_stars=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[2]/div/form[2]/a"""),returncount=1)
         c_forks=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[3]/a"""),returncount=1)
-        
-        #1 mainbranch_commits数 branches数 releases数 contributors数 license名
+    except:
+        sys.exit("Error: No watchers/stars/forks") 
+
+    try:    
+        #1 mainbranch_commits数 branches数 releases数 license
         c_mbcommits=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[1]/a/span"""),returncount=1)
         c_branches=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[2]/a/span"""),returncount=1)
         c_releases=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[3]/a/span"""),returncount=1)
     except:
-        sys.exit("Error in Webcrawler")
+	print("No c_mbcommits/c_branches/c_releases")
+        c_mbcommits=None
+	c_branches=None
+	c_releases=None
+
     '''
     for i in range(5):
         c_contributors=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[4]/a/span"""),returncount=1)

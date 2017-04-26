@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Mon Apr 24 10:54:30 2017
 
@@ -78,7 +78,7 @@ def GrabApidetails(crawlerbody,reponame):
     
     v_langdetails=[]
     for i in range(min([3,c_langcount])):
-        v_langdetails+=[language_infos[i][0],language_infos[i][1],unicode(language_infos[i][1]/c_codesize)[:10]]
+        v_langdetails+=[language_infos[i][0],language_infos[i][1],c_codesize==0 and '0' or unicode(language_infos[i][1]*1.0/c_codesize)[:10]]
     for i in range(c_langcount,3):
         v_langdetails+=[None,None,None]
     

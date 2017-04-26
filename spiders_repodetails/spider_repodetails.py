@@ -30,8 +30,7 @@ def run(taskque,crawlerbody,errortasks):
     #从队列中读取1个任务
     task=taskque.get()
     repofullname=task[1]+'/'+task[2]
-    taskstatus=[0,0]
-    
+    taskstatus=list(task[3:5])   
     
     
     
@@ -60,14 +59,16 @@ def run(taskque,crawlerbody,errortasks):
                                                    "open_issues","close_issues","open_pull","close_pull","_web_finished"],
                                                    "id=%s"%task[0])
                 except Exception,e:
-                    print(e)
+                    print(crawlerbody.threadname,e)
                     details[7]=u'*contains emoji*'
+		    continue
                 break
             taskstatus[1]=1
         print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
     except SystemExit,e:
-        pass
+        print("task %s: "%(task[0]),e)
     except Exception,e:
+	print(e)
         traceback.print_exc()
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
             taskstatus=[None,None]
@@ -79,8 +80,7 @@ def run(taskque,crawlerbody,errortasks):
         else:
             errortasks.append(task)
             print("unexpected error(run). error task %s has been put back to taskque"%(task[0]))
-    finally:
-        Tools.SaveData.UpdateData(conn,taskstatus,"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
+    Tools.SaveData.UpdateData(conn,taskstatus,"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
     
 
     
@@ -141,7 +141,7 @@ def CrawlerInitialize(crawlerbody):
 
 
 def main():
-    GLOBAL.date='20170426'
+    GLOBAL.date='20170503'
     Spider.main(get_paras(),create_queue,run,mode=1)
 
 main()
