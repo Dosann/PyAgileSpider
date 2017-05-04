@@ -45,7 +45,7 @@ def run(taskque,crawlerbody,errortasks):
                                     "language","mlangsize","mlangper","seclang","slangsize","slangper",
                                     "thilang","tlangsize","tlangper","_api_finished"],"id=%s"%(task[0]))
             taskstatus[0]=1
-        print("successfully updated api details of repo %s"%(task[0]))
+        #print("successfully updated api details of repo %s"%(task[0]))
         
         if task[4]==False:
             webdetails_1=gws.GrabWeb1(driver,repofullname)
@@ -64,7 +64,7 @@ def run(taskque,crawlerbody,errortasks):
 		    continue
                 break
             taskstatus[1]=1
-        print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
+        #print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
     except SystemExit,e:
         print("task %s: "%(task[0]),e)
     except Exception,e:
@@ -88,10 +88,12 @@ def get_paras():
     #设置参数
     paras={}
     #数据库访问设置
-    paras["conn_settings"]={"dbname":"grabgithub",
-                             'host':"10.2.1.26",
-                             'user':'root',
-                             'passwd':'123456'}
+    paras["conn_settings"]={"dbname":GLOBAL.dbname,
+                             'host':GLOBAL.host,
+                             'user':GLOBAL.user,
+                             'passwd':GLOBAL.passwd,
+                             'port':GLOBAL.port,
+                             'charset':GLOBAL.charset}
     
     #线程数
     paras["threadnumber"]=30
@@ -114,8 +116,8 @@ def get_paras():
 def create_queue():
     date=GLOBAL.date
     #读取任务信息
-    conn=Tools.DatabaseSupport.GenerateConn(dbname='grabgithub',host='10.2.1.26')
-    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where _api_finished=0 or _web_finished=0"%(date))
+    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host)
+    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where (_api_finished=0 or _web_finished=0)"%(date))
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0

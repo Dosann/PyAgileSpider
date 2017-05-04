@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Thu Mar 09 11:19:58 2017
 
@@ -73,8 +73,8 @@ class Crawler:
             try:
                 #开始爬取
                 run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
-            except Exception,e:
-                print "(Crawler)",e
+            except:
+                print "(Crawler)"
                 traceback.print_exc()
                 print threadname,"Error when crawling"
                 print "Failed mission has been put back into que"

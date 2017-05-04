@@ -67,7 +67,7 @@ def GrabApidetails(crawlerbody,reponame):
             c_contributors=99999999
         else:
             sys.exit("888: unexpected error when requesting contributors")
-    print('c_contributors: %s'%(c_contributors))
+    #print('c_contributors: %s'%(c_contributors))
     
     language_infos=sorted(repo.get_languages().items(),key=lambda x:x[1],reverse=1)
     codesize=0

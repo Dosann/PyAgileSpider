@@ -32,6 +32,9 @@ def db_construction(cur,tables):
     if "repodetails_%s"%(date) not in tables:
         CreateRepodetails_date(cur)
         InitializeRepodetails_date(cur)
+    
+    if "repo_languages" not in tables:
+        CreateRepo_languages(cur)
 
     print("Database initialization finished")
 #添加表单
@@ -147,4 +150,14 @@ def InitializeRepodetails_date(cur):
     date=GLOBAL.date
     cmd="insert into repodetails_%s(id,user,repo) select id,user,repo from good_repos"%(date)
     cur.execute(cmd)
-            
+
+def CreateRepo_languages(cur):
+    cmd="""create table repo_languages(
+            id int auto_increment primary key,
+            repo varchar(200),
+            language json)"""
+    cur.execute(cmd)
+    
+    
+    
+    
