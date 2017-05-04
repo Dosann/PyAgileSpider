@@ -92,8 +92,9 @@ def get_paras():
 def create_queue():
     
     GLOBAL.newtask_open=1
+    GLOBAL.batchsize=1000
     #读取任务信息
-    tasks=LoadTasks(11000)
+    tasks=LoadTasks(GLOBAL.batchsize+100)
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0
@@ -111,7 +112,7 @@ def CrawlerInitialize(crawlerbody):
 
 def LoadTasks(batchsize=10000):
     conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
-    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,name,owned_repo from user_has_repo where language is null limit 10000")
+    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,name,owned_repo from user_has_repo where language is null limit %s"%(batchsize))
     conn.close()
     return tasks
 
