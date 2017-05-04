@@ -1,0 +1,517 @@
+PhantomJS is launching GhostDriver...
+[INFO  - 2017-05-04T07:43:48.136Z] GhostDriver - Main - running on port 62149
+[INFO  - 2017-05-04T07:43:49.635Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":false,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2017-05-04T07:43:49.635Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.customHeaders:  - {}
+[INFO  - 2017-05-04T07:43:49.635Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"windows-8-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.loadImages":false}
+[INFO  - 2017-05-04T07:43:49.635Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 69839800-309d-11e7-aca4-2d7c0beb5a6f
+[ERROR - 2017-05-04T07:43:58.229Z] Session [68537c70-309d-11e7-abc0-134765019530] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:43:58.230Z] Session [68537c70-309d-11e7-abc0-134765019530] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:44:02.182Z] Session [68537c70-309d-11e7-abc0-134765019530] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:44:02.182Z] Session [68537c70-309d-11e7-abc0-134765019530] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:44:15.115Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883855103
+[ERROR - 2017-05-04T07:44:16.575Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883856507
+[ERROR - 2017-05-04T07:44:17.828Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883857813
+[ERROR - 2017-05-04T07:44:19.304Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883859275
+[ERROR - 2017-05-04T07:44:20.899Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883860835
+[ERROR - 2017-05-04T07:44:22.624Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883862611
+[ERROR - 2017-05-04T07:44:24.090Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883864029
+[ERROR - 2017-05-04T07:44:25.807Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883865767
+[ERROR - 2017-05-04T07:44:27.344Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883867331
+[ERROR - 2017-05-04T07:44:28.795Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883868754
+[ERROR - 2017-05-04T07:44:30.152Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883870068
+[ERROR - 2017-05-04T07:44:31.461Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883871399
+[ERROR - 2017-05-04T07:44:32.690Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883872645
+[ERROR - 2017-05-04T07:44:33.895Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883873805
+[ERROR - 2017-05-04T07:44:35.121Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883875097
+[ERROR - 2017-05-04T07:44:36.326Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883876294
+[ERROR - 2017-05-04T07:44:37.422Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883877383
+[ERROR - 2017-05-04T07:44:38.497Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883878479
+[ERROR - 2017-05-04T07:44:39.564Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883879553
+[ERROR - 2017-05-04T07:44:40.594Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883880529
+[ERROR - 2017-05-04T07:44:41.568Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883881558
+[ERROR - 2017-05-04T07:44:42.585Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883882530
+[ERROR - 2017-05-04T07:44:43.503Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883883502
+[ERROR - 2017-05-04T07:44:44.439Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883884351
+[ERROR - 2017-05-04T07:44:45.304Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883885297
+[ERROR - 2017-05-04T07:44:46.184Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883886170
+[ERROR - 2017-05-04T07:44:47.083Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883887072
+[ERROR - 2017-05-04T07:44:48.051Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883888036
+[ERROR - 2017-05-04T07:44:49.070Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883889045
+[ERROR - 2017-05-04T07:44:50.139Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883890064
+[ERROR - 2017-05-04T07:44:51.226Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883891156
+[ERROR - 2017-05-04T07:44:58.260Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883898243
+[ERROR - 2017-05-04T07:45:03.740Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883903733
+[ERROR - 2017-05-04T07:45:04.748Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883904679
+[ERROR - 2017-05-04T07:45:05.991Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883905952
+[ERROR - 2017-05-04T07:45:07.383Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883907373
+[ERROR - 2017-05-04T07:45:08.921Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883908912
+[ERROR - 2017-05-04T07:45:11.963Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883911938
+[ERROR - 2017-05-04T07:45:13.440Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883913424
+[ERROR - 2017-05-04T07:45:14.923Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883914888
+[ERROR - 2017-05-04T07:45:16.524Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883916494
+[ERROR - 2017-05-04T07:45:18.202Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883918193
+[ERROR - 2017-05-04T07:45:19.811Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883919719
+[ERROR - 2017-05-04T07:45:21.392Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883921333
+[ERROR - 2017-05-04T07:45:22.942Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883922888
+[ERROR - 2017-05-04T07:45:24.458Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883924431
+[ERROR - 2017-05-04T07:45:26.209Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883926178
+[ERROR - 2017-05-04T07:45:27.677Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883927616
+[ERROR - 2017-05-04T07:45:29.150Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883929106
+[ERROR - 2017-05-04T07:45:30.758Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883930712
+[ERROR - 2017-05-04T07:45:32.136Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883932084
+[ERROR - 2017-05-04T07:45:33.487Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883933428
+[ERROR - 2017-05-04T07:45:34.951Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883934944
+[ERROR - 2017-05-04T07:45:36.222Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883936149
+[ERROR - 2017-05-04T07:45:37.534Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883937493
+[ERROR - 2017-05-04T07:45:39.014Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883938975
+[ERROR - 2017-05-04T07:45:40.343Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883940289
+[ERROR - 2017-05-04T07:45:41.665Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883941603
+[ERROR - 2017-05-04T07:45:43.181Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883943179
+[ERROR - 2017-05-04T07:45:44.403Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883944383
+[ERROR - 2017-05-04T07:45:45.509Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883945498
+[ERROR - 2017-05-04T07:45:46.821Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883946795
+[ERROR - 2017-05-04T07:45:48.062Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883948037
+[ERROR - 2017-05-04T07:45:53.194Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883953177
+[ERROR - 2017-05-04T07:45:56.884Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883956863
+[ERROR - 2017-05-04T07:45:58.260Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883958242
+[ERROR - 2017-05-04T07:45:59.670Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883959647
+[ERROR - 2017-05-04T07:46:01.570Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883961551
+[ERROR - 2017-05-04T07:46:02.510Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883962489
+[ERROR - 2017-05-04T07:46:04.366Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883964358
+[ERROR - 2017-05-04T07:46:08.865Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883968850
+[ERROR - 2017-05-04T07:46:10.069Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883970038
+[ERROR - 2017-05-04T07:46:11.554Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883971530
+[ERROR - 2017-05-04T07:46:13.174Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883973131
+[ERROR - 2017-05-04T07:46:14.789Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883974781
+[ERROR - 2017-05-04T07:46:16.312Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883976231
+[ERROR - 2017-05-04T07:46:18.214Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883978148
+[ERROR - 2017-05-04T07:46:19.670Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883979646
+[ERROR - 2017-05-04T07:46:21.225Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883981207
+[ERROR - 2017-05-04T07:46:22.575Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883982519
+[ERROR - 2017-05-04T07:46:23.960Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883983948
+[ERROR - 2017-05-04T07:46:25.414Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883985382
+[ERROR - 2017-05-04T07:46:26.732Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883986720
+[ERROR - 2017-05-04T07:46:28.130Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883988108
+[ERROR - 2017-05-04T07:46:29.463Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883989443
+[ERROR - 2017-05-04T07:46:31.135Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883991119
+[ERROR - 2017-05-04T07:46:32.429Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883992417
+[ERROR - 2017-05-04T07:46:33.499Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883993489
+[ERROR - 2017-05-04T07:46:34.663Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883994627
+[ERROR - 2017-05-04T07:46:35.968Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883995941
+[ERROR - 2017-05-04T07:46:37.407Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883997386
+[ERROR - 2017-05-04T07:46:38.609Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883998590
+[ERROR - 2017-05-04T07:46:39.601Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493883999589
+[ERROR - 2017-05-04T07:46:40.557Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884000461
+[ERROR - 2017-05-04T07:46:41.471Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884001430
+[ERROR - 2017-05-04T07:46:44.129Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884004117
+[ERROR - 2017-05-04T07:46:48.025Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884007989
+[ERROR - 2017-05-04T07:46:51.619Z] Session [5e36fc30-309d-11e7-86fc-2502f8c994a2] - page.onError - msg: TypeError: 'undefined' is not a functi[ERROR - 2017-05-04T07:46:52.866Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884012777
+[ERROR - 2017-05-04T07:46:59.489Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:46:59.489Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:47:01.692Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: TypeError: 'undefined' is not a functi[ERROR - 2017-05-04T07:47:38.667Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:47:38.667Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:48:02.849Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:02.849Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:05.958Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:05.958Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:11.250Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:48:11.250Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:48:17.035Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:17.035Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:18.039Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884098028
+[ERROR - 2017-05-04T07:48:22.503Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:22.503Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:23.116Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884103113
+[ERROR - 2017-05-04T07:48:26.286Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:26.286Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:27.195Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884107191
+[ERROR - 2017-05-04T07:48:31.306Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:48:31.306Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[INFO  - 2017-05-04T07:48:31.966Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[ERROR - 2017-05-04T07:48:32.573Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:32.574Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:33.491Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884113489
+[ERROR - 2017-05-04T07:48:37.800Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:48:37.800Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:48:39.389Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:39.389Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:42.737Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:42.737Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:47.793Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:47.793Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:54.084Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:48:54.085Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:48:56.102Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:56.102Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:48:59.536Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:48:59.536Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:04.632Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:04.633Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:05.834Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884145776
+[ERROR - 2017-05-04T07:49:06.482Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884146349
+[ERROR - 2017-05-04T07:49:09.480Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:09.480Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:11.640Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:11.640Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:11.928Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884151911
+[ERROR - 2017-05-04T07:49:16.672Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:49:16.672Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:49:17.504Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:17.504Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:18.444Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884158436
+[ERROR - 2017-05-04T07:49:22.436Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:22.437Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:24.797Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:24.797Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:28.216Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:28.217Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:29.568Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884169510
+[ERROR - 2017-05-04T07:49:33.625Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:49:33.625Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:49:34.764Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:34.764Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:37.803Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:37.803Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:41.815Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:41.815Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:44.593Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:44.593Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:46.753Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:46.753Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:52.092Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:49:52.092Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:49:53.120Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:49:53.120Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:49:53.975Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884193963
+[ERROR - 2017-05-04T07:50:06.478Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:50:06.478Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:50:10.793Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:10.793Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:14.046Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:14.046Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:17.776Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:17.776Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:19.272Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884219269
+[ERROR - 2017-05-04T07:50:22.321Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884222262
+[ERROR - 2017-05-04T07:50:24.107Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:50:24.107Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:50:25.819Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:25.819Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:28.987Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:28.987Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:34.666Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:34.666Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:36.439Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884236419
+[ERROR - 2017-05-04T07:50:39.501Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:39.501Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:41.603Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:41.603Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:46.006Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:46.007Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:46.898Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884246836
+[ERROR - 2017-05-04T07:50:49.759Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:49.759Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:52.060Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:52.060Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:50:56.129Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:50:56.130Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:00.384Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:00.384Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:03.833Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:03.833Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:08.044Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:08.044Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:08.850Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884268847
+[ERROR - 2017-05-04T07:51:13.228Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:51:13.228Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:51:14.867Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:14.867Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:17.632Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:17.632Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:21.384Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:21.384Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:22.432Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884282368
+[ERROR - 2017-05-04T07:51:28.088Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:28.088Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:30.967Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:30.967Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:34.391Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:34.391Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:37.678Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:37.678Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:40.391Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:40.392Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:46.135Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:46.135Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:47.787Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884307728
+[ERROR - 2017-05-04T07:51:51.383Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:51:51.383Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:51:52.086Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:52.086Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:52.788Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884312778
+[ERROR - 2017-05-04T07:51:56.272Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:51:56.273Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:51:57.399Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884317338
+[ERROR - 2017-05-04T07:52:01.298Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:01.298Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:03.198Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:03.198Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:05.291Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884325289
+[ERROR - 2017-05-04T07:52:08.495Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:08.495Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:09.163Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:09.164Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:09.851Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884329850
+[ERROR - 2017-05-04T07:52:14.071Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:14.071Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:14.788Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884334751
+[ERROR - 2017-05-04T07:52:19.238Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:19.238Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:21.623Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:21.623Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:22.508Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884342506
+[ERROR - 2017-05-04T07:52:25.457Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:25.457Z] Session [5ff85b40-309d-11e7-afad-e1fd3377d413] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+-5d208a7604a9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:01.844Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  [ERROR - 2017-05-04T07:52:05.972Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:05.973Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:07.718Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:07.718Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824[ERROR - 2017-05-04T07:52:08.439Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bi[ERROR - 2017-05-04T07:52:08.571Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884328567
+[ERROR - 2017-05-04T07:52:12.966Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:12.966Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:13.350Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:13.350Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (htt[ERROR - 2017-05-04T07:52:16.686Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:16.686Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:19.927Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - msg: TypeError: 'u[ERROR - 2017-05-04T07:52:20.804Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:20.804Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (htt[ERROR - 2017-05-04T07:52:24.223Z] Session [65577a80-309d-11e7-9afd-5d208a7604a9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:24.223Z] Sess[ERROR - 2017-05-04T07:52:25.423Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:25.423Z] Session [61c245d0-309d-11e7-875d-1d7a0e02bb30] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:25.774Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884345767
+ession [6725d1e0-309d-11e7-95fa-c35c6b4a13da] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:26.862Z] Session [67bc6c90-309d-11e7-a0f0-873971f1bf5a] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:26.862Z] Session [67bc6c90-309d-11e7-a0f0-873971f1bf5a] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+n) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:23.804Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Sto[ERROR - 2017-05-04T07:52:24.722Z] Session [58d34910-309d-11e7-a972-434bab5faf06] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:24.722Z] Session [58d34910-309d-11e7-a972-434bab5faf06] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com[ERROR - 2017-05-04T07:52:25.684Z] Session [5a9f2f70-309d-11e7-a15c-159c29f77296] - page.on[ERROR - 2017-05-04T07:52:26.795Z] Session [58d34910-309d-11e7-a972-434bab5faf06] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:26.795Z] Session [58d34910-309d-11e7-a972-434bab5faf06] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+2:19.729Z] Session [5e36fc30-309d-11e7-86fc-2502f8c994a2] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:20.049Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Sto[ERROR - 2017-05-04T07:[ERROR - 2017-05-04T07:52:24.791Z] Session [5e36fc30-309d-11e7-86fc-2502f8c994a2] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:24.791Z] Session [5e36fc30-309d-11e7-86fc-2502f8c994a2] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+24c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+T07:52:17.999Z] Session [6693cb10-309d-11e7-a5bf-6d850854927d] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c878[ERROR - 2017-05-04T07:52:20.442Z] Session [60949b40-309d-11e7-8a95-5df3ceae3bf2] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.c[ERROR - 2017-05-04T07:52:23.723Z] Session [6693cb10-309d-11e7-a5bf-6d850854927d] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:23.723Z] Session [6693cb10-309d-11e7-a5bf-6d850854927d] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c[ERROR - 2017-05-04T07:52:25.101Z] Session [60949b40-309d-11e7-8a95-5df3ceae3bf2] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:25.101Z] Session [60949b40-309d-11e7-8a95-5df3ceae3bf2] - page.onError - stack:[ERROR - 2017-05-04T07:52:26.197Z] Session [6693cb10-309d-11e7-a5bf-6d850854927d] - page.onError - ms[ERROR - 2017-05-04T07:52:26.782Z] Session [5ec83fb0-309d-11e7-8bbb-c9faa419b356] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:26.782Z] S[ERROR - 2017-05-04T07:52:27.368Z] Session [60949b40-309d-11e7-8a95-5df3ceae3bf2] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:27.368Z] Session [60949b40-309d-11e7-8a95-5df3ceae3bf2] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+:21.806Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884341800
+[ERROR - 2017-05-04T07:52:26.551Z] Session [5a0d0190-309d-11e7-a367-05df9d847079] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:26.551Z] Session [5a0d0190-309d-11e7-a367-05df9d847079] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+-309d-11e7-8ef5-7d663df1c7e1] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-04T07:52:23.674Z] Session [64c0dfd0-309d-11e7-84ca-39600243c431] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:26.924Z] Session [64c0dfd0-309d-11e7-84ca-39600243c431] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:26.924Z] Session [64c0dfd0-309d-11e7-84ca-39600243c431] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+nd - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884345103
+[ERROR - 2017-05-04T07:52:26.008Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884346004
+[ERROR - 2017-05-04T07:52:26.896Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Fo[ERROR - 2017-05-04T07:52:27.145Z] Session [612b0ee0-309d-11e7-8c26-a57ba89a2de3] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:27.145Z] Session [612b0ee0-309d-11e7-8c26-a57ba89a2de3] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)[ERROR - 2017-05-04T07:52:27.309Z] Session [5bd1e310-309d-11e7-b4b2-0f7e54662096] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:27.309Z] Session [5bd1e310-309d-11e7-b4b2-0f7e54662096] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+ Time: 1493884346845
+RROR - 2017-05-04T07:52[ERROR - 2017-05-04T07:52:26.799Z] Session [583f1f60-309d-11e7-b6b3-b528759b899a] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:26.799Z] Session [583f1f60-309d-11e7-b6b3-b528759b899a] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+meworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+10cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:24.572Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884344569
+[ERROR - 2017-05-04T07:52:25.023Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884345021
+[ERROR - 2017-05-04T07:52:27.073Z] Session [5b36b480-309d-11e7-a036-a3c35cad2dac] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:27.073Z] Session [5b36b480-309d-11e7-a036-a3c35cad2dac] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:27.554Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493884347551
+- stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-b7cffd9d7510124d7e35eef16b8c781e5f713a334426f99f287a59d1d7665d12.js:17)
+[ERROR - 2017-05-04T07:52:19.748Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:19.748Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-04T07:52:21.642Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-04T07:52:21.642Z] Session [69839800-309d-11e7-aca4-2d7c0beb5a6f] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)

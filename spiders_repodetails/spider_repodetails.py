@@ -65,6 +65,7 @@ def run(taskque,crawlerbody,errortasks):
                 break
             taskstatus[1]=1
         #print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
+        print("thread %s successfully updated all details of repo %s"%(crawlerbody.threadname,task[0]))    
     except SystemExit,e:
         print("task %s: "%(task[0]),e)
     except Exception,e:
