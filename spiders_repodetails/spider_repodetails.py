@@ -116,8 +116,8 @@ def get_paras():
 def create_queue():
     date=GLOBAL.date
     #读取任务信息
+    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
     tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where (_api_finished=0 or _web_finished=0)"%(date))
-    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host)
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0
