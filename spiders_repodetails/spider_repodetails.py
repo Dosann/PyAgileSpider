@@ -97,7 +97,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=30
+    paras["threadnumber"]=20
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -118,7 +118,9 @@ def create_queue():
     date=GLOBAL.date
     #读取任务信息
     conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
-    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where (_api_finished=0 or _web_finished=0)"%(date))
+    startid=int(raw_input('input start task id: '))
+    endid=int(raw_input('input end task id: '))
+    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where id>=%s and id<=%s and (_api_finished=0 or _web_finished=0)"%(date,startid,endid))
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0

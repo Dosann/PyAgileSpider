@@ -42,7 +42,9 @@ def GrabLanguages(crawlerbody,reponame):
             break
     
     repo=g.get_repo(reponame)
-    return json.dumps(repo.get_languages())
+    js=json.dumps(repo.get_languages())
+    js=js.replace("'","\\'").replace('"','\\"')
+    return js
     
     
     

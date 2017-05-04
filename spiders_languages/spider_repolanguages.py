@@ -21,17 +21,25 @@ import GLOBAL
 
 def run(taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
-    date=GLOBAL.date
     
     conn=crawlerbody.conn
     
     #从队列中读取1个任务
     task=taskque.get()
     
+    if GLOBAL.newtask_open==1 and task[0]%10000==0:
+        new_tasks=LoadTasks(10000)
+        for task in new_tasks:
+            taskque.put(task)
+        new_tasks_count=len(new_tasks)
+        print "%s new tasks loaded"%(new_tasks_count)
+        if new_tasks_count<10000:
+            GLOBAL.newtask_open=0
+    
     
     try:
-        language=gasl.GrabLanguages(crawlerbody,task[1])
-        Tools.SaveData.UpdateData(conn,[language],"repo_languages",["language"],"id=%s"%(task[0]))
+        language=gasl.GrabLanguages(crawlerbody,'/'.join([task[1],task[2]]))
+        Tools.SaveData.UpdateData(conn,[language],"user_has_repo",["language"],"id=%s"%(task[0]))
         print("successfully updated api details of repo %s"%(task[0]))
         
     except SystemExit,e:
@@ -39,7 +47,8 @@ def run(taskque,crawlerbody,errortasks):
     except Exception,e:
         traceback.print_exc()
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
-            taskstatus=[None,None]
+            Tools.SaveData.UpdateData(conn,['Not Found'],"user_has_repo",["language"],"id=%s"%(task[0]))
+            return
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
@@ -48,8 +57,6 @@ def run(taskque,crawlerbody,errortasks):
         else:
             errortasks.append(task)
             print("unexpected error(run). error task %s has been put back to taskque"%(task[0]))
-    finally:
-        Tools.SaveData.UpdateData(conn,taskstatus,"repodetails_%s"%(date),["_api_finished","_web_finished"],"id=%s"%(task[0]))
     
 
     
@@ -57,13 +64,15 @@ def get_paras():
     #设置参数
     paras={}
     #数据库访问设置
-    paras["conn_settings"]={"dbname":"grabgithub",
-                             'host':"10.2.1.26",
-                             'user':'root',
-                             'passwd':'123456'}
+    paras["conn_settings"]={"dbname":GLOBAL.dbname,
+                             'host':GLOBAL.host,
+                             'user':GLOBAL.user,
+                             'passwd':GLOBAL.passwd,
+                             'port':GLOBAL.port,
+                             'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=5
+    paras["threadnumber"]=50
     
     #不开启webdriver
     paras["webdriver"]=None
@@ -73,7 +82,7 @@ def get_paras():
     paras["github_account"]=True
     
     #是否自动创建表单，paras["conn_settings"]为None时必须设为None
-    paras["db_construction"]=True
+    paras["db_construction"]=False
          
     #Crawler对象的其他初始化操作(登陆之类的)
     paras["crawler_initialize"]=CrawlerInitialize
@@ -81,14 +90,15 @@ def get_paras():
     return paras
 
 def create_queue():
+    
+    GLOBAL.newtask_open=1
     #读取任务信息
-    conn=Tools.DatabaseSupport.GenerateConn(dbname='grabgithub',host='10.2.1.26')
-    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,repo from repo_languages where language is not null")
+    tasks=LoadTasks(11000)
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0
     for task in tasks:
-        que.put(task[0:2])
+        que.put(task)
         loaded_items_count+=1
     print loaded_items_count,"items has been loaded"
     del tasks
@@ -97,15 +107,13 @@ def create_queue():
 
 
 def CrawlerInitialize(crawlerbody):
-    crawlerbody.driver.get("https://www.github.com/login")
-    username=Tools.SeleniumSupport.GetElementByXpath(crawlerbody.driver,"""//*[@id="login_field"]""")
-    username.clear()
-    username.send_keys(crawlerbody.gaccount[1])
-    password=Tools.SeleniumSupport.GetElementByXpath(crawlerbody.driver,"""//*[@id="password"]""")
-    password.clear()
-    password.send_keys(crawlerbody.gaccount[2])
-    Tools.SeleniumSupport.GetElementByXpath(crawlerbody.driver,"""//*[@id="login"]/form/div[4]/input[3]""").click()
-    
+    pass
+
+def LoadTasks(batchsize=10000):
+    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
+    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,name,owned_repo from user_has_repo where language is null limit 10000")
+    conn.close()
+    return tasks
 
 
 def main():
