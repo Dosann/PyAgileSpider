@@ -91,7 +91,8 @@ class SeleniumSupport:
                 SeleniumSupport.WaitUntilPresence(driver,xpath)
             element=driver.find_element_by_xpath(xpath)
             return element
-        except:
+        except Exception,e:
+            print(e)
             if option=="Abandon":
                 return None
             else:
@@ -156,9 +157,23 @@ class SeleniumSupport:
             if loadimage==False:
                 dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
                 dcap["phantomjs.page.settings.loadImages"]=False
-                driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs")
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs")
+                    except Exception,e:
+                         print(e)
         elif drivertype=="Chrome":
             if downloadpath!=None:
                 chromeOptions=webdriver.ChromeOptions()

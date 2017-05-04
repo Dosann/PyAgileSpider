@@ -68,7 +68,7 @@ def run(taskque,crawlerbody,errortasks):
     except SystemExit,e:
         print("task %s: "%(task[0]),e)
     except Exception,e:
-	print(e)
+        print(e)
         traceback.print_exc()
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
             taskstatus=[None,None]
@@ -96,7 +96,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=30
+    paras["threadnumber"]=10
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -116,8 +116,8 @@ def get_paras():
 def create_queue():
     date=GLOBAL.date
     #读取任务信息
-    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host)
     tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo,_api_finished,_web_finished from repodetails_%s where (_api_finished=0 or _web_finished=0)"%(date))
+    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host)
     #构建任务队列
     que=Queue.Queue()
     loaded_items_count=0
@@ -144,6 +144,6 @@ def CrawlerInitialize(crawlerbody):
 
 def main():
     GLOBAL.date='20170503'
-    Spider.main(get_paras(),create_queue,run,mode=1)
+    Spider.main(get_paras(),create_queue,run,mode=2)
 
 main()
