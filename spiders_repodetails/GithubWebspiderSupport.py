@@ -27,7 +27,10 @@ def GrabWeb1(driver,url):
         c_forks=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[1]/div[1]/ul/li[3]/a"""),returncount=1)
         #print(c_watchers,c_stars,c_forks)
     except:
-        sys.exit("Error: No watchers/stars/forks") 
+        #print("Error: No watchers/stars/forks")
+        c_watchers=None
+        c_stars=None
+        c_forks=None
 
     try:    
         #1 mainbranch_commits数 branches数 releases数 license
@@ -37,8 +40,8 @@ def GrabWeb1(driver,url):
     except:
         #print("No c_mbcommits/c_branches/c_releases")
         c_mbcommits=None
-	c_branches=None
-	c_releases=None
+        c_branches=None
+        c_releases=None
 
     '''
     for i in range(5):
