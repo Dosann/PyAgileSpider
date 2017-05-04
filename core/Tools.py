@@ -152,26 +152,27 @@ class SeleniumSupport:
         
     #创建一个selenium的模拟浏览器webdriver
     @staticmethod
-    def CreateWebdriver(drivertype,path="..\\core\\webdrivers",loadimage=True,downloadpath=None):
+    def CreateWebdriver(drivertype,path="..\\core\\webdrivers\\",loadimage=True,downloadpath=None):
         if drivertype=="PhantomJS":
             if loadimage==False:
                 dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
                 dcap["phantomjs.page.settings.loadImages"]=False
                 try:
-                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs.exe")
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
                 except:
                     print("can't not open driver from core/webdrivers. opening driver from default path")
                     try:
-                        driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs")
+                        print("current path: %s"%(path+"phantomjs"))
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap)
                     except Exception,e:
                         print(e)
             else:
                 try:
-                    driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs.exe")
+                    driver=webdriver.PhantomJS(executable_path=path+"phantomjs.exe")
                 except:
                     print("can't not open driver from core/webdrivers. opening driver from default path")
                     try:
-                        driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs")
+                        driver=webdriver.PhantomJS()
                     except Exception,e:
                          print(e)
         elif drivertype=="Chrome":
@@ -179,13 +180,13 @@ class SeleniumSupport:
                 chromeOptions=webdriver.ChromeOptions()
                 prefs={"download.default_directory":downloadpath}
                 chromeOptions.add_experimental_option("prefs",prefs)
-                driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"\\chromedriver.exe")
+                driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"chromedriver.exe")
             else:
-                driver=webdriver.Chrome(executable_path=path+"\\chromedriver.exe")
+                driver=webdriver.Chrome(executable_path=path+"chromedriver.exe")
         elif drivertype=="Firefox":
-            driver=webdriver.Firefox(executable_path=path+"\\geckodriver.exe")
+            driver=webdriver.Firefox(executable_path=path+"geckodriver.exe")
         elif drivertype=="Ie":
-            driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
+            driver=webdriver.Ie(executable_path=path+"IEDriverServer.exe")
         return driver
     
 class UrllibSupport:
