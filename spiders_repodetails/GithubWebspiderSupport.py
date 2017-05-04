@@ -35,7 +35,7 @@ def GrabWeb1(driver,url):
         c_branches=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[2]/a/span"""),returncount=1)
         c_releases=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[3]/a/span"""),returncount=1)
     except:
-	print("No c_mbcommits/c_branches/c_releases")
+        #print("No c_mbcommits/c_branches/c_releases")
         c_mbcommits=None
 	c_branches=None
 	c_releases=None
@@ -54,7 +54,7 @@ def GrabWeb1(driver,url):
         driver.find_element_by_xpath("""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
         v_license=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-repo-pjax-container"]/div[2]/div[1]/div[2]/div/div/ul/li[5]/a""")
     except:
-        print "element exists not: license"
+        #print "element exists not: license"
         v_license=None
     
     try:
@@ -63,7 +63,7 @@ def GrabWeb1(driver,url):
         v_readme=v_readme.replace("'","\\'").replace('"','\\"')
         v_readme=Tools.Filter.FilterEmoji(v_readme)
     except:
-        print "element exists not: readme"
+        #print "element exists not: readme"
         v_readme=None
     
     
@@ -101,7 +101,7 @@ def GrabWeb2(driver,url):
         sys.exit("can not load the page: %s/issues."%(url))
 
     if driver.current_url.split('/')[-1]!='issues':
-        print('issues page exists not')
+        #print('issues page exists not')
         return [0,0]
     
     try:
@@ -109,7 +109,7 @@ def GrabWeb2(driver,url):
         c_openissues=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]"""),returncount=1)
         c_closeissues=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[2]"""),returncount=1)
     except:
-        print("element exists not: issues")
+        #print("element exists not: issues")
         c_openissues=0
         c_closeissues=0
     
@@ -125,7 +125,7 @@ def GrabWeb3(driver,url):
         sys.exit("can not load the page: %s/pulls."%(url))
     
     if driver.current_url.split('/')[-1]!='pulls':
-        print('pulls page exists not')
+        #print('pulls page exists not')
         return [0,0]
     
     try:
@@ -133,7 +133,7 @@ def GrabWeb3(driver,url):
         c_openpulls=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[1]"""),returncount=1)
         c_closepulls=Tools.Filter.FilterNumber(Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="js-issues-toolbar"]/div/div[1]/a[2]"""),returncount=1)
     except:
-        print("element exists not: pulls")
+        #print("element exists not: pulls")
         c_openpulls=0
         c_closepulls=0
     
