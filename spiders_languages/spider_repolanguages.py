@@ -27,13 +27,13 @@ def run(taskque,crawlerbody,errortasks):
     #从队列中读取1个任务
     task=taskque.get()
     
-    if GLOBAL.newtask_open==1 and task[0]%10000==0:
-        new_tasks=LoadTasks(10000)
+    if GLOBAL.newtask_open==1 and GLOBAL.finishedcount%GLOBAL.batchsize==0:
+        new_tasks=LoadTasks(GLOBAL.batchsize)
         for task in new_tasks:
             taskque.put(task)
         new_tasks_count=len(new_tasks)
         print "%s new tasks loaded"%(new_tasks_count)
-        if new_tasks_count<10000:
+        if new_tasks_count<GLOBAL.batchsize:
             GLOBAL.newtask_open=0
     
     
@@ -49,6 +49,9 @@ def run(taskque,crawlerbody,errortasks):
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
             Tools.SaveData.UpdateData(conn,['Not Found'],"user_has_repo",["language"],"id=%s"%(task[0]))
             return
+        if 451 in e:
+            Tools.SaveData.UpdateData(conn,['Access Blocked'],"user_has_repo",["language"],"id=%s"%(task[0]))
+            return
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
@@ -58,6 +61,7 @@ def run(taskque,crawlerbody,errortasks):
             errortasks.append(task)
             print("unexpected error(run). error task %s has been put back to taskque"%(task[0]))
     
+    GLOBAL.finishedcount+=1
 
     
 def get_paras():
@@ -72,7 +76,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=50
+    paras["threadnumber"]=30
     
     #不开启webdriver
     paras["webdriver"]=None
@@ -82,7 +86,7 @@ def get_paras():
     paras["github_account"]=True
     
     #是否自动创建表单，paras["conn_settings"]为None时必须设为None
-    paras["db_construction"]=False
+    paras["db_construction"]=None
          
     #Crawler对象的其他初始化操作(登陆之类的)
     paras["crawler_initialize"]=CrawlerInitialize
@@ -93,6 +97,8 @@ def create_queue():
     
     GLOBAL.newtask_open=1
     GLOBAL.batchsize=1000
+    GLOBAL.finishedcount=0
+    GLOBAL.nextbatchbegin=1
     #读取任务信息
     tasks=LoadTasks(GLOBAL.batchsize+100)
     #构建任务队列
@@ -112,8 +118,10 @@ def CrawlerInitialize(crawlerbody):
 
 def LoadTasks(batchsize=10000):
     conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
-    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,name,owned_repo from user_has_repo where language is null limit %s"%(batchsize))
+    tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,name,owned_repo from user_has_repo where id>=%s and language is null limit %s"%(GLOBAL.nextbatchbegin,batchsize))
     conn.close()
+    
+    GLOBAL.nextbatchbegin=tasks[-1][0]+1
     return tasks
 
 

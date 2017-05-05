@@ -73,6 +73,8 @@ def run(taskque,crawlerbody,errortasks):
         traceback.print_exc()
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
             taskstatus=[None,None]
+        if 451 in e:
+            taskstatus=[None,None]
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
