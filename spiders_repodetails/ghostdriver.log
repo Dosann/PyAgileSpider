@@ -1,8 +1,44 @@
-[INFO  - 2017-05-04T09:00:43.158Z] GhostDriver - Main - running on port 45831
-[INFO  - 2017-05-04T09:00:43.961Z] Session [27dd8f40-30a8-11e7-a4c8-170cc94c0365] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":false,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-05-04T09:00:43.961Z] Session [27dd8f40-30a8-11e7-a4c8-170cc94c0365] - page.customHeaders:  - {}
-[INFO  - 2017-05-04T09:00:43.961Z] Session [27dd8f40-30a8-11e7-a4c8-170cc94c0365] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.loadImages":false}
-[INFO  - 2017-05-04T09:00:43.961Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 27dd8f40-30a8-11e7-a4c8-170cc94c0365
-[ERROR - 2017-05-04T09:00:46.730Z] RouterReqHand - _handle.error - {"line":264,"sourceURL":"phantomjs://code/webelement_request_handler.js","stack":"_postValueCommand@phantomjs://code/webelement_request_handler.js:264:52\n_handle@phantomjs://code/webelement_request_handler.js:72:30\n_reroute@phantomjs://code/request_handler.js:61:20\n_handle@phantomjs://code/session_request_handler.js:120:42\n_reroute@phantomjs://code/request_handler.js:61:20\n_handle@phantomjs://code/router_request_handler.js:78:46"}
-
-  phantomjs://platform/console++.js:263 in error
+PhantomJS is launching GhostDriver...
+[INFO  - 2017-05-05T14:31:07.959Z] GhostDriver - Main - running on port 59306
+[INFO  - 2017-05-05T14:31:09.306Z] Session [7b1b3070-319f-11e7-95d4-5715087a80f2] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":false,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34","webSecurityEnabled":true}
+[INFO  - 2017-05-05T14:31:09.306Z] Session [7b1b3070-319f-11e7-95d4-5715087a80f2] - page.customHeaders:  - {}
+[INFO  - 2017-05-05T14:31:09.306Z] Session [7b1b3070-319f-11e7-95d4-5715087a80f2] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"1.9.8","driverName":"ghostdriver","driverVersion":"1.1.0","platform":"windows-8-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.settings.loadImages":false}
+[INFO  - 2017-05-05T14:31:09.306Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 7b1b3070-319f-11e7-95d4-5715087a80f2
+[ERROR - 2017-05-05T14:31:15.205Z] Session [7b1b3070-319f-11e7-95d4-5715087a80f2] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-05T14:31:15.205Z] Session [7b1b3070-319f-11e7-95d4-5715087a80f2] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:14.262Z] Session [79b84510-319f-11e7-8f7c-9133350339a5] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-05T14:31:14.262Z] Session [79b84510-319f-11e7-8f7c-9133350339a5] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:13.452Z] Session [70c48d60-319f-11e7-8635-6fa7fed72ae0] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-05T14:31:13.452Z] Session [70c48d60-319f-11e7-8635-6fa7fed72ae0] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:14.843Z] Session [6e5e3bc0-319f-11e7-b7f3-d33ba3a45cf9] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-05T14:31:14.843Z] Session [6e5e3bc0-319f-11e7-b7f3-d33ba3a45cf9] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:15.242Z] Session [74f47b70-319f-11e7-b769-abf851395dac] - page.onError - msg: TypeError: 'undefined' is not a functi[ERROR - 2017-05-05T14:31:15.358Z] Session [71798580-319f-11e7-8fff-e9973f4de3a7] - page.onError - msg: TypeError: 'undefined' is not a function (evaluating 'Array.prototype.forEach.call.bind(Array.prototype.forEach)')
+[ERROR - 2017-05-05T14:31:15.358Z] Session [71798580-319f-11e7-8fff-e9973f4de3a7] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+h)')
+[ERROR - 2017-05-05T14:31:13.921Z] Session [6df5dd00-319f-11e7-b740-5d1036ee15f2] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:14.434Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994674431
+Stop Time: 1493994673087
+[ERROR - 2017-05-05T14:31:13.898Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994673896
+[ERROR - 2017-05-05T14:31:14.726Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994674714
+[ERROR - 2017-05-05T14:31:15.513Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994675509
+5T14:31:11.605Z] Session [72b7f8f0-319f-11e7-bfa0-6d8ddb9e4bd0] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+  (anonymous function) (https://assets-cdn.github.com/assets/frameworks-e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:11.961Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994671943
+[ERROR - 2017-05-05T14:31:13.586Z] Session [72b7f8f0-319f-11e7-bfa0-6d8ddb9e4bd0] - page.onError - msg: TypeError: 'undefined' is not a functi[ERROR - 2017-05-05T14:31:15.676Z] Session [7177fee0-319f-11e7-b517-d1a2303e3c17] - page.onError - msg: Error: timeout loading module: github-bootstrap
+[ERROR - 2017-05-05T14:31:15.676Z] Session [7177fee0-319f-11e7-b517-d1a2303e3c17] - page.onError - stack:
+  (anonymous function) (https://assets-cdn.github.com/assets/github-4977fded0a8013dcec578ee53a6c943019d679bd91db8fa5bc662d06b52b8c07.js:17)
+e54e006049610cc297fe133f824c8784c712e170cb8c0c802aed2a767b2857e6.js:1)
+[ERROR - 2017-05-05T14:31:14.179Z] WebElementLocator - _handleLocateCommand - Element(s) NOT Found: GAVE UP. Search Stop Time: 1493994674171

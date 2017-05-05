@@ -23,6 +23,13 @@ import GLOBAL
 def run(taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
     date=GLOBAL.date
+
+    if crawlerbody.threadname=='Thread-1':
+        data_1=Tools.LoadData.LoadDataByCmd(crawlerbody.conn,"select watchers,stars,forks from repodetails_%s where id=1"%(date))
+        print("current data of task 1: ",data_1)
+        time.sleep(20)
+        return
+
     
     driver=crawlerbody.driver
     conn=crawlerbody.conn
@@ -58,11 +65,10 @@ def run(taskque,crawlerbody,errortasks):
                                                   ["watchers","stars","forks","mainbranch_commits","branches","releases","license","readme",
                                                    "open_issues","close_issues","open_pull","close_pull","_web_finished"],
                                                    "id=%s"%task[0])
+                    break
                 except Exception,e:
                     print(crawlerbody.threadname,e)
                     details[7]=u'*contains emoji*'
-		    continue
-                break
             taskstatus[1]=1
         #print("thread %s successfully updated web details of repo %s"%(crawlerbody.threadname,task[0]))
         print("thread %s successfully updated all details of repo %s"%(crawlerbody.threadname,task[0]))    
