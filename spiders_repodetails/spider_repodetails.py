@@ -75,6 +75,8 @@ def run(taskque,crawlerbody,errortasks):
             taskstatus=[None,None]
         if 451 in e:
             taskstatus=[None,None]
+        if 403 in e and hasattr(e,'data') and 'blocked' in e.data['message']:
+            taskstatus=[None,None]
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
             #print "abuse error."
