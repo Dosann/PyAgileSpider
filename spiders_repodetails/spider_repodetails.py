@@ -15,7 +15,7 @@ import traceback
 import time
 import random
 
-import GithubWebspiderSupport as gws
+from spiders_reporeadme import GithubWebspiderSupport as gws
 import GithubApispiderSupport as gas
 import GLOBAL
 

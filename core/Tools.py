@@ -383,8 +383,8 @@ class Filter:
             u"(\ud83d[\u0000-\uddff])|"  # symbols & pictographs (2 of 2)
             u"(\ud83d[\ude80-\udeff])|"  # transport & map symbols
             u"(\ud83c[\udde0-\uddff])"  # flags (iOS)
-            "+", flags=re.UNICODE)
-        s=emoji_pattern.sub(r'',s.decode('utf-8'))
+            ,flags=re.UNICODE)
+        s=emoji_pattern.sub(r'',s)
         return s
 
 
