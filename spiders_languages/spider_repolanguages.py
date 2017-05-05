@@ -118,7 +118,6 @@ def LoadTasks(batchsize=10000):
 
 
 def main():
-    GLOBAL.date='20170426'
     Spider.main(get_paras(),create_queue,run,mode=1)
 
 main()
