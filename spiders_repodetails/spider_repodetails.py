@@ -97,7 +97,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=30
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
