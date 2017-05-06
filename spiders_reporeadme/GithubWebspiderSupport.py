@@ -33,8 +33,8 @@ def GrabWeb1(driver,url):
     except Exception,e:
         #traceback.print_exc()
         print(e)
-        user,repo=url.split('/')
-        driver.save_screenshot('../files/screenshots/%s.png'%(user+'_'+repo))
+        #user,repo=url.split('/')
+        #driver.save_screenshot('../files/screenshots/%s.png'%(user+'_'+repo))
         # "Whoa there" 错误
         if 'Whoa there' in driver.page_source:
             sys.exit('ERROR: WHOA THERE')
