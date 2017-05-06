@@ -92,7 +92,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
 
     #线程数
-    paras["threadnumber"]=50
+    paras["threadnumber"]=30
 
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -141,6 +141,6 @@ def CrawlerInitialize(crawlerbody):
 
 def main():
     GLOBAL.date='20170503'
-    Spider.main(get_paras(),create_queue,run,mode=1)
+    Spider.main(get_paras(),create_queue,run,mode=2)
 
 main()

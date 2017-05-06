@@ -308,6 +308,9 @@ class SaveData:
         conn.commit()
         cur.close()
 
+
+
+
 class DatabaseSupport:
     
     #生成一个数据库链接
@@ -339,6 +342,13 @@ class DatabaseSupport:
         conn.commit()
         cur.close()
         return True
+
+    #写入mysql的操作log
+    @staticmethod
+    def WriteLog(cmd):
+        f=open("../files/MySQL.log",'a')
+        f.write(cmd+'\n')
+        f.close()
 
 class TxtIO:
     

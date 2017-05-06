@@ -10,7 +10,7 @@ from sys import path
 path.append("../")
 from core import Tools
 import sys
-import traceback
+import re
 
 
 def GrabWeb1(driver,url):
@@ -24,7 +24,9 @@ def GrabWeb1(driver,url):
     try:
         Tools.SeleniumSupport.WaitUntilPresence(driver,"""//*[@id="readme"]""")
         v_readme=Tools.SeleniumSupport.GetTextByXpath(driver,"""//*[@id="readme"]""")
-        v_readme=v_readme.replace("'","\\'").replace('"','\\"')
+        #v_readme=v_readme.replace("'","\\'").replace('"','\\"')
+        pattern=re.compile(r"""['";]""")
+        v_readme=pattern.sub(' ',v_readme)
         v_readme=Tools.Filter.FilterEmoji(v_readme)
         if type(v_readme)==str or type(v_readme)==unicode:
             v_readme=v_readme[:65500]
