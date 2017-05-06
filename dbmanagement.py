@@ -29,14 +29,22 @@ def db_construction(cur,tables):
     if "tasks_user" not in tables:
         CreateTasksUser(cur)
     
+    '''
     if "repodetails_%s"%(date) not in tables:
         CreateRepodetails_date(cur)
         InitializeRepodetails_date(cur)
+    '''
     
     '''
     if "repo_languages" not in tables:
         CreateRepo_languages(cur)
     '''
+    
+    if "repo_relas_contribute" not in tables:
+        CreateRepoRelasContribute(cur)
+    
+    if "repo_relas_contribute_finished_tasks" not in tables:
+        CreateRepoRelasContributeFinishedTasks(cur)
 
     print("Database initialization finished")
 #添加表单
@@ -162,5 +170,17 @@ def CreateRepo_languages(cur):
     cur.execute(cmd)
 '''
     
-    
+def CreateRepoRelasContribute(cur):
+    cmd="""create table repo_relas_contribute(
+            id int auto_increment primary key,
+            reponame varchar(200),
+            contributor varchar(40))"""
+    cur.execute(cmd)
+
+def CreateRepoRelasContributeFinishedTasks(cur):
+    cmd="""create table repo_relas_contribute_finished_tasks(
+            id int primary key,
+            contributors_count int,
+            status tinyint)"""
+    cur.execute(cmd)
     
