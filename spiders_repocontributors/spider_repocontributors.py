@@ -150,6 +150,6 @@ def LoadTasks(startid,endid):
 
 
 def main():
-    Spider.main(get_paras(),create_queue,run,mode=2)
+    Spider.main(get_paras(),create_queue,run,mode=1)
 
 main()
