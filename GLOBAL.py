@@ -14,7 +14,7 @@ host='590ab5bb84735.sh.cdb.myqcloud.com'
 port=14803
 dbname='grabgithub'
 user='cdb_outerroot'
-passwd='Aa19960407'
+passwd='Aa123456'
 charset='utf8'
 
 '''
