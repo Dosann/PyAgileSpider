@@ -47,13 +47,13 @@ def run(taskque,crawlerbody,errortasks):
     except Exception,e:
         traceback.print_exc()
         if 404 in e and hasattr(e,'data') and 'Not Found' in e.data['message']:
-            Tools.SaveData.UpdateData(conn,['Not Found'],"user_has_repo",["language"],"id=%s"%(task[0]))
+            Tools.SaveData.UpdateData(conn,['*Not Found*'],"user_has_repo",["language"],"id=%s"%(task[0]))
             return
         if 451 in e:
-            Tools.SaveData.UpdateData(conn,['Access Blocked'],"user_has_repo",["language"],"id=%s"%(task[0]))
+            Tools.SaveData.UpdateData(conn,['*Access Blocked*'],"user_has_repo",["language"],"id=%s"%(task[0]))
             return
         if 403 in e and hasattr(e,'data') and 'blocked' in e.data['message']:
-            Tools.SaveData.UpdateData(conn,['Access Blocked'],"user_has_repo",["language"],"id=%s"%(task[0]))
+            Tools.SaveData.UpdateData(conn,['*Access Blocked*'],"user_has_repo",["language"],"id=%s"%(task[0]))
             return
         if 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             errortasks.append(task)
