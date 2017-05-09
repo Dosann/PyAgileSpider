@@ -45,6 +45,12 @@ def db_construction(cur,tables):
     
     if "repo_relas_contribute_finished_tasks" not in tables:
         CreateRepoRelasContributeFinishedTasks(cur)
+        
+    if "repo_relas_fork" not in tables:
+        CreateRepoRelasFork(cur)
+        
+    if "repo_relas_fork_finished_tasks" not in tables:
+        CreateRepoRelasForkFinishedTasks(cur)
 
     print("Database initialization finished")
 #添加表单
@@ -183,4 +189,17 @@ def CreateRepoRelasContributeFinishedTasks(cur):
             contributors_count int,
             status tinyint)"""
     cur.execute(cmd)
-    
+
+def CreateRepoRelasFork(cur):
+    cmd="""create table repo_relas_fork(
+            id int auto_increment primary key,
+            reponame varchar(200),
+            forker varchar(200))"""
+    cur.execute(cmd)
+
+def CreateRepoRelasForkFinishedTasks(cur):
+    cmd="""create table repo_relas_fork_finished_tasks(
+            id int primary key,
+            forker_count int,
+            status tinyint)"""
+    cur.execute(cmd)

@@ -180,9 +180,25 @@ class SeleniumSupport:
                 chromeOptions=webdriver.ChromeOptions()
                 prefs={"download.default_directory":downloadpath}
                 chromeOptions.add_experimental_option("prefs",prefs)
-                driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"chromedriver.exe")
+                try:
+                    driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        print("current path: %s"%(path+"chrome"))
+                        driver=webdriver.Chrome(desired_capabilities=dcap)
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.Chrome(executable_path=path+"chromedriver.exe")
+                try:
+                    driver=webdriver.Chrome(executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.Chrome()
+                    except Exception,e:
+                        print(e)
+                    
         elif drivertype=="Firefox":
             driver=webdriver.Firefox(executable_path=path+"geckodriver.exe")
         elif drivertype=="Ie":
