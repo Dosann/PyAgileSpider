@@ -25,3 +25,7 @@ user='root'
 passwd='123456'
 charset='utf8'
 '''
+
+redis_host='10.2.1.26'
+redis_port=6379
+redis_dbname=0

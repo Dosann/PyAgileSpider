@@ -46,6 +46,16 @@ class Crawler:
             self.driver=Tools.SeleniumSupport.CreateWebdriver(paras["webdriver"],loadimage=paras["loadimage"])
         else:
             self.driver=None
+        
+        #是否将任务队列储存在redis中
+        if paras["taskque_format"]=="redis":
+            import RedisSupport
+            self.red=RedisSupport.RedisSupport.GenerateRedisConnection(host=paras["redis_settings"]["host"],
+                                                                       port=paras["redis_settings"]["port"],
+                                                                       dbname=paras["redis_settings"]["dbname"])
+        else:
+            self.red=None
+
 
         #对该Crawler对象的其他初始化操作
         if paras["crawler_initialize"]!=None:
@@ -66,25 +76,39 @@ class Crawler:
     def Crawling(self,threadname,taskque,run):
         download_count=0
         status=1
-
-        while not taskque.empty():
-            #创建错误任务队列
-            errortasks=[]
-            try:
-                #开始爬取
-                run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
-            except:
-                print "(Crawler)"
-                traceback.print_exc()
-                print threadname,"Error when crawling"
-                print "Failed mission has been put back into que"
-                status=0
-                break
-
-            #将错误任务队列中的任务重新加入任务队列
-            for errortask in errortasks:
-                taskque.put(errortask)
-            download_count+=1
+        if self.red!=None: #队列存在于redis中
+            while len(self.red.lrange(taskque,0,0))!=0:
+                #创建错误任务队列
+                errortasks=[]
+                try:
+                    #开始爬取
+                    run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                except:
+                    print "(Crawler)"
+                    traceback.print_exc()
+                    print threadname,"Error when crawling"
+                    print "Failed mission has been put back into que"
+                    status=0
+                    break
+        else:
+            while not taskque.empty():
+                #创建错误任务队列
+                errortasks=[]
+                try:
+                    #开始爬取
+                    run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                except:
+                    print "(Crawler)"
+                    traceback.print_exc()
+                    print threadname,"Error when crawling"
+                    print "Failed mission has been put back into que"
+                    status=0
+                    break
+    
+                #将错误任务队列中的任务重新加入任务队列
+                for errortask in errortasks:
+                    taskque.put(errortask)
+                download_count+=1
 
         #队列已空，返回成功信息，程序结束
         if self.g!=None:

@@ -23,9 +23,13 @@ def run(taskque,crawlerbody,errortasks):
     
     conn=crawlerbody.conn
     g=crawlerbody.g
+    red=crawlerbody.red
     
     #从队列中读取1个任务
-    task=taskque.get()
+    task=red.lpop(taskque)
+    task=task.replace('L','').replace("u'","").replace("'","")
+    task=task.split(',')
+    task=[int(task[0][1:]),task[1][1:],int(task[2][1:-1])]
     
     
     try:
@@ -42,7 +46,10 @@ def run(taskque,crawlerbody,errortasks):
                 status=0
                 break
         Tools.SaveData.SaveData(conn,forkers,"repo_relas_fork",["reponame","forker"])
-        Tools.SaveData.SaveData(conn,[[task[0],current,status]],"repo_relas_fork_finished_tasks",["id","forker_count","status"])
+        if task[2]!=0:
+            Tools.SaveData.UpdateData(conn,[task[2]+current,status],"repo_relas_fork_finished_tasks",["forker_count","status"],"where id=%s"%(task[0]))
+        else:
+            Tools.SaveData.SaveData(conn,[[task[0],current,status]],"repo_relas_fork_finished_tasks",["id","forker_count","status"])
         
         print("successfully updated forkers of repo %s"%(task[0]))
         
@@ -70,7 +77,7 @@ def run(taskque,crawlerbody,errortasks):
             Tools.SaveData.SaveData(conn,[[task[0],0,1]],"repo_relas_fork_finished_tasks",["id","forker_count","status"])
             return
         elif 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
-            errortasks.append(task)
+            red.rpush(taskque,)
             print "abuse error."
             time.sleep(random.Random()*5+5)
             print("abuse stop finished")
@@ -107,49 +114,26 @@ def get_paras():
     #Crawler对象的其他初始化操作(登陆之类的)
     paras["crawler_initialize"]=CrawlerInitialize
     
+    #是否在redis中读写队列
+    #paras["taskque_format"]=None
+    paras["taskque_format"]="redis"
+    paras["redis_settings"]={"dbname":GLOBAL.redis_dbname,
+                             "host":GLOBAL.redis_host,
+                             "port":GLOBAL.redis_port}
+    
     return paras
 
 def create_queue():
     
     #读取任务信息
-    startid=int(raw_input("input startid:"))
-    endid=int(raw_input("input endid:"))
-    que=LoadTasks(startid,endid)
-    
-    return que
+    return 'taskque'
 
 
 def CrawlerInitialize(crawlerbody):
     pass
 
 def LoadTasks(startid,endid):
-    conn=Tools.DatabaseSupport.GenerateConn(dbname=GLOBAL.dbname,host=GLOBAL.host,user=GLOBAL.user,passwd=GLOBAL.passwd,port=GLOBAL.port,charset=GLOBAL.charset)
-    finished_task_ids=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select id from repo_relas_fork_finished_tasks where status=1")))
-    finishing_task_ids=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select id from repo_relas_fork_finished_tasks where status=0")))
-    all_tasks=Tools.LoadData.LoadDataByCmd(conn,"select id,user,repo from repo_active_20170508 where id>=%s and id<=%s"%(startid,endid))
-    
-    taskque=Queue.Queue()
-    ommited_items_count=0
-    loaded_items_count=0
-    for task in all_tasks:
-        if task[0] in finished_task_ids:
-            ommited_items_count+=1
-        elif task[0] in finishing_task_ids:
-            loaded_items_count+=1
-            forkers_number=Tools.LoadData.LoadDataByCmd(conn,"select forker_count from repo_relas_fork_finished_tasks where id=%s"%(task[0]))[0]
-            taskque.put([task[0],'/'.join(task[1:3]),forkers_number])
-        else:
-            loaded_items_count+=1
-            taskque.put([task[0],'/'.join(task[1:3]),0])
-    
-    print("loaded items count: %s"%(loaded_items_count))
-    print("ommited items count: %s"%(ommited_items_count))
-    
-    del(finished_task_ids)
-    del(finishing_task_ids)
-    del(all_tasks)
-    
-    return taskque
+    pass
 
 
 def main():

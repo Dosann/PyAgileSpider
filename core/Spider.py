@@ -122,5 +122,8 @@ def ParasComplement(paras):
     
     if "crawler_initialize" not in paras:
         paras["crawler_initialize"]=None
+
+    if "taskque_format" not in paras:
+        paras["taskque_format"]=None
     
     return paras
