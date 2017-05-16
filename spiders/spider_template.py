@@ -14,7 +14,7 @@ import Queue
 import traceback
 
 
-def run(threadname,taskque,crawlerbody,errortasks):
+def run(taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
 
     driver=crawlerbody.driver
