@@ -45,12 +45,18 @@ def db_construction(cur,tables):
     
     if "repo_relas_contribute_finished_tasks" not in tables:
         CreateRepoRelasContributeFinishedTasks(cur)
+<<<<<<< Updated upstream
         
     if "repo_relas_fork" not in tables:
         CreateRepoRelasFork(cur)
         
     if "repo_relas_fork_finished_tasks" not in tables:
         CreateRepoRelasForkFinishedTasks(cur)
+=======
+    
+    if "repo_language_27w" not in tables:
+        CreateRepoLanguage_27w(cur)
+>>>>>>> Stashed changes
 
     print("Database initialization finished")
 #添加表单
@@ -190,6 +196,7 @@ def CreateRepoRelasContributeFinishedTasks(cur):
             status tinyint)"""
     cur.execute(cmd)
 
+<<<<<<< Updated upstream
 def CreateRepoRelasFork(cur):
     cmd="""create table repo_relas_fork(
             id int auto_increment primary key,
@@ -202,4 +209,10 @@ def CreateRepoRelasForkFinishedTasks(cur):
             id int primary key,
             forker_count int,
             status tinyint)"""
+=======
+def CreateRepoLanguage_27w(cur):
+    cmd="""create table repo_language_27w(
+            id int primary key,
+            language text)"""
+>>>>>>> Stashed changes
     cur.execute(cmd)
