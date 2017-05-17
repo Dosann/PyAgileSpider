@@ -26,6 +26,6 @@ passwd='123456'
 charset='utf8'
 '''
 
-redis_host='10.2.1.26'
+redis_host='120.25.107.34'
 redis_port=6379
 redis_dbname=0
