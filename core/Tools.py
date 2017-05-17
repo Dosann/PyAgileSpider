@@ -23,6 +23,7 @@ import datetime
 import urllib2
 import codecs
 import sys
+import Queue
 
 class SeleniumSupport:
     
@@ -550,3 +551,25 @@ class OtherSupport:
     def GenerateRandomString(length=10):
         s=''.join(random.sample(string.ascii_letters + string.digits, length))
         return s
+    
+    # 根据列表(list)tasks 和 已完成项目集合(set)tasks_finished生成任务队列
+    # key表示对进行task进行重复判定时使用task中的第几位元素
+    @staticmethod
+    def TaskqueGeneration(tasks,tasks_finished={},key=0):
+        ommited_count=0
+        loaded_count=0
+        que=Queue.Queue()
+        
+        for task in tasks:
+            if task[key] not in tasks_finished:
+                loaded_count+=1
+                que.put(task)
+            else:
+                ommited_count+=1
+        
+        print("loaded tasks: %s"%(loaded_count))
+        print("ommited tasks: %s"%(ommited_count))
+        
+        return que
+        
+        

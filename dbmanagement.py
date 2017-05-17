@@ -51,6 +51,9 @@ def db_construction(cur,tables):
         
     if "repo_relas_fork_finished_tasks" not in tables:
         CreateRepoRelasForkFinishedTasks(cur)
+    
+    if "repo_language_27w" not in tables:
+        CreateRepoLanguage_27w(cur)
 
     print("Database initialization finished")
 #添加表单
@@ -202,4 +205,10 @@ def CreateRepoRelasForkFinishedTasks(cur):
             id int primary key,
             forker_count int,
             status tinyint)"""
+    cur.execute(cmd)
+    
+def CreateRepoLanguage_27w(cur):
+    cmd="""create table repo_language_27w(
+            id int primary key,
+            language text)"""
     cur.execute(cmd)
