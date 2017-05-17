@@ -77,7 +77,7 @@ def run(taskque,crawlerbody,errortasks):
             Tools.SaveData.SaveData(conn,[[task[0],0,1]],"repo_relas_fork_finished_tasks",["id","forker_count","status"])
             return
         elif 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
-            red.rpush(taskque,)
+            red.rpush(taskque,task)
             print "abuse error."
             time.sleep(random.Random()*5+5)
             print("abuse stop finished")
