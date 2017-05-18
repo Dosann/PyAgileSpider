@@ -83,7 +83,7 @@ def run(taskque,crawlerbody,errortasks):
             print("abuse stop finished")
             return
         else:
-            errortasks.append(task)
+            red.rpush(taskque,task)
             print("unexpected error(run). error task %s has been put back to taskque"%(task[0]))
 
     
