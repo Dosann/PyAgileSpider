@@ -99,7 +99,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=40
+    paras["threadnumber"]=20
     
     #不开启webdriver
     paras["webdriver"]=None
