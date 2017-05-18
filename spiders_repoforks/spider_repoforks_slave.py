@@ -47,7 +47,7 @@ def run(taskque,crawlerbody,errortasks):
                 break
         Tools.SaveData.SaveData(conn,forkers,"repo_relas_fork",["reponame","forker"])
         if task[2]!=0:
-            Tools.SaveData.UpdateData(conn,[task[2]+current,status],"repo_relas_fork_finished_tasks",["forker_count","status"],"where id=%s"%(task[0]))
+            Tools.SaveData.UpdateData(conn,[task[2]+current,status],"repo_relas_fork_finished_tasks",["forker_count","status"],"id=%s"%(task[0]))
         else:
             Tools.SaveData.SaveData(conn,[[task[0],current,status]],"repo_relas_fork_finished_tasks",["id","forker_count","status"])
         
@@ -79,7 +79,7 @@ def run(taskque,crawlerbody,errortasks):
         elif 403 in e and hasattr(e,'data') and 'abuse' in e.data['message']:
             red.rpush(taskque,task)
             print "abuse error."
-            time.sleep(random.Random()*5+5)
+            time.sleep(random.Random().random()*5+5)
             print("abuse stop finished")
             return
         else:
@@ -99,7 +99,7 @@ def get_paras():
                              'charset':GLOBAL.charset}
     
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=40
     
     #不开启webdriver
     paras["webdriver"]=None
