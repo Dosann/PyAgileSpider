@@ -10,11 +10,11 @@ Created on Tue Apr 25 09:53:25 2017
 date='2017'
 
 
-host='590ab5bb84735.sh.cdb.myqcloud.com'
-port=14803
-dbname='grabgithub'
-user='cdb_outerroot'
-passwd='Aa123456'
+host='rm-bp10rf4zreaw5he66o.mysql.rds.aliyuncs.com'
+port=3306
+dbname='test'
+user='root'
+passwd='Csstsari107'
 charset='utf8'
 
 '''
