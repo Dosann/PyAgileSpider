@@ -53,11 +53,12 @@ def get_paras():
     paras={}
     #数据库访问设置
     paras["conn_settings"]={"dbname":"test",
-                             'host':"10.2.1.26",
-                             'user':'root',
-                             'passwd':'123456'}
+                             'host':"590ab5bb84735.sh.cdb.myqcloud.com",
+                             'user':'cdb_outerroot',
+                             'port':14803,
+                             'passwd':'Aa123456'}
     #线程数
-    paras["threadnumber"]=20
+    paras["threadnumber"]=5
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -90,4 +91,4 @@ def main(initial_url1,domain_name1):
     domain_name=domain_name1
     Spider.main(get_paras(),create_queue,run,mode=1)
 
-main("""http://zx.chnlc.net/Search/Index""",'http://zx.chnlc.net')
+main("""http://course.shlll.net/""",'http://course.shlll.net')
