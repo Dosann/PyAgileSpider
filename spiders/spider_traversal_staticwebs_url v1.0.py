@@ -118,8 +118,8 @@ def main(initial_url1,domain_name1,url_match_mode1):
     initial_url=initial_url1
     domain_name=domain_name1
     url_match_mode=url_match_mode1
-    Spider.main(get_paras(),create_queue,run,mode=2)
+    Spider.main(get_paras(),create_queue,run,mode=1)
 
 
-main("""http://course.shlll.net/""",'course.shlll.net',url_match_mode1=1)
+main("""http://www.douban.com/""",'douban.com',url_match_mode1=2)
 # url_match_mode 1:全域名匹配(course.shlll.net) 2:匹配从第二格开始的部分(shlll.net)
