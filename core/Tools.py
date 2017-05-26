@@ -24,6 +24,7 @@ import urllib2
 import codecs
 import sys
 import Queue
+from bs4 import BeautifulSoup
 
 class SeleniumSupport:
     
@@ -413,6 +414,60 @@ class Filter:
             ,flags=re.UNICODE)
         s=emoji_pattern.sub(r'',s)
         return s
+    
+    @staticmethod
+    def _UrlComplement(urls,current_page_url):
+        domain_url='/'.join(current_page_url.split('/')[:3])
+        if type(urls)==list:
+            urls=map(lambda x:(x[:4]=='http' and x or domain_url+x),urls)
+        else:
+            urls=(urls[:4]=='http' and urls or domain_url+urls)
+        return urls
+    
+    @staticmethod
+    def FilterHref(s,current_page_url=None):
+        s=re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')",s)
+        if current_page_url!=None:
+            s=Filter._UrlComplement(s,current_page_url)
+        return s
+    
+    @staticmethod
+    def FilterSrc(s,current_page_url=None):
+        s=re.findall(r"(?<=src=\").+?(?=\")|(?<=src=\').+?(?=\')",s)
+        if current_page_url!=None:
+            s=Filter._UrlComplement(s,current_page_url)
+        s=map(lambda x:x.decode('utf-8'),s)
+        return s
+
+
+class BsSupport:
+    
+    @staticmethod
+    def SoupGeneration(html):
+        soup=BeautifulSoup(html,'lxml')
+        return soup
+    
+    @staticmethod
+    def FindElementsWithAttr(soup,keywd):
+        eles=soup.find_all()
+        target_eles=[]
+        for ele in eles:
+            if keywd in ele.attrs:
+                target_eles.append(ele)
+        return target_eles
+    
+    @staticmethod
+    def UrlComplement(urls,current_page_url):
+        domain_url='/'.join(current_page_url.split('/')[:3])
+        if type(urls)==list:
+            urls=map(lambda x:(x[:4]=='http' and x or domain_url+x).decode('utf-8'),urls)
+        else:
+            urls=(urls[:4]=='http' and urls or domain_url+urls)
+        return urls
+    
+    @staticmethod
+    def FindDynamicButtons(urls):
+        pass
 
 
 class GithubAccountManagement:

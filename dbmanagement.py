@@ -12,6 +12,9 @@ def db_construction(cur,tables):
     
     if "t_urls" not in tables:
         CreateT_urls(cur)
+    
+    if "t_iframes" not in tables:
+        CreateT_iframes(cur)
 
 #添加表单
 
