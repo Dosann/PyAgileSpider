@@ -33,7 +33,7 @@ def CrawlBegin(paras,threadname,taskque,crawl_function):
                 break
             restart_count+=1
         except Exception,e:
-            print e
+            print "(Spider)",e
             traceback.print_exc()
             continue
     print threadname,"finished. restart count:",restart_count
@@ -53,6 +53,7 @@ def main(paras,create_queue,crawl_function,mode=1):
                                                 charset=paras["conn_settings"]["charset"])
         tablenames=Tools.DatabaseSupport.GetTableNames(conn)
         dbmanagement.db_construction(conn.cursor(),tablenames)
+        conn.commit()
         conn.close()
     
     #创建任务队列
@@ -95,6 +96,9 @@ def ParasComplement(paras):
     
     if "webdriver" not in paras:
         paras["webdriver"]=None
+    if "loadimage" not in paras:
+        paras["loadimage"]=True
+    
     
     conn_settings={'host':"localhost",
                    'dbname':"mysql",
@@ -115,5 +119,11 @@ def ParasComplement(paras):
         paras["db_construction"]=None
     elif paras["db_construction"]==True:
         paras["db_construction"]=dbmanagement.db_construction
+    
+    if "crawler_initialize" not in paras:
+        paras["crawler_initialize"]=None
+
+    if "taskque_format" not in paras:
+        paras["taskque_format"]=None
     
     return paras

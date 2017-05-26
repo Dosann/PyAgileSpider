@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Created on Thu Mar 09 11:19:57 2017
 
@@ -21,6 +21,9 @@ from os import getcwd
 import random
 import datetime
 import urllib2
+import codecs
+import sys
+import Queue
 
 class SeleniumSupport:
     
@@ -81,33 +84,46 @@ class SeleniumSupport:
         while driver.find_element_by_xpath("""//*[@id="divlist"]/ul/li[1]/div[1]/a""").text==reference:
             time.sleep(0.5)
     
+    #获取某个对象
+    @staticmethod
+    def GetElementByXpath(driver,xpath,option=None,wait=True):
+        try:
+            if wait==True:
+                SeleniumSupport.WaitUntilPresence(driver,xpath)
+            element=driver.find_element_by_xpath(xpath)
+            return element
+        except Exception,e:
+            print(e)
+            if option=="Abandon":
+                return None
+            else:
+                sys.exit('Abandoned')
+    
     #获取某个对象的text
     @staticmethod
-    def GetTextByXpath(driver,xpath,option=None):#通过xpath定位
-        if option=="Abandon":#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
-            try:
+    def GetTextByXpath(driver,xpath,option=None,wait=True):#通过xpath定位
+        try:#若该对象在超时时间内仍为加载出来（可能不存在），则舍弃，返回None
+            if wait==True:
                 SeleniumSupport.WaitUntilPresence(driver,xpath)
-                txt=driver.find_element_by_xpath(xpath).text
-                return strip(txt)
-            except:
-                return None
-        else:
-            SeleniumSupport.WaitUntilPresence(driver,xpath)
             txt=driver.find_element_by_xpath(xpath).text
             return strip(txt)
-    @staticmethod
-    def GetTextByTagname(driver,tagname,option=None):#通过tagname定位
-        if option=="Abandon":
-            try:
-                SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
-                txt=driver.find_element_by_tag_name(tagname).text
-                return strip(txt)
-            except:
+        except:
+            if option=="Abandon":
                 return None
-        else:
-            SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
+            else:
+                sys.exit('Abandoned')
+    @staticmethod
+    def GetTextByTagname(driver,tagname,option=None,wait=True):#通过tagname定位
+        try:
+            if wait==True:
+                SeleniumSupport.WaitUntilPresenceByTagname(driver,tagname)
             txt=driver.find_element_by_tag_name(tagname).text
             return strip(txt)
+        except:
+            if option=="Abandon":
+                return None
+            else:
+                sys.exit('Abandoned!')
             
     #获取某个对象的某个attribute
     @staticmethod
@@ -137,28 +153,59 @@ class SeleniumSupport:
         
     #创建一个selenium的模拟浏览器webdriver
     @staticmethod
-    def CreateWebdriver(drivertype,path="..\\core\\webdrivers",loadimage=True,downloadpath=None):
+    def CreateWebdriver(drivertype,path="..\\core\\webdrivers\\",loadimage=True,downloadpath=None):
         if drivertype=="PhantomJS":
             if loadimage==False:
                 dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
                 dcap["phantomjs.page.settings.loadImages"]=False
-                driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        print("current path: %s"%(path+"phantomjs"))
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap)
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.PhantomJS(executable_path=path+"\\phantomjs.exe")
+                try:
+                    driver=webdriver.PhantomJS(executable_path=path+"phantomjs.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.PhantomJS()
+                    except Exception,e:
+                         print(e)
         elif drivertype=="Chrome":
             if downloadpath!=None:
                 chromeOptions=webdriver.ChromeOptions()
                 prefs={"download.default_directory":downloadpath}
                 chromeOptions.add_experimental_option("prefs",prefs)
-                driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"\\chromedriver.exe")
+                try:
+                    driver = webdriver.Chrome(chrome_options=chromeOptions,executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        print("current path: %s"%(path+"chrome"))
+                        driver=webdriver.Chrome(desired_capabilities=dcap)
+                    except Exception,e:
+                        print(e)
             else:
-                driver=webdriver.Chrome(executable_path=path+"\\chromedriver.exe")
+                try:
+                    driver=webdriver.Chrome(executable_path=path+"chromedriver.exe")
+                except:
+                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                    try:
+                        driver=webdriver.Chrome()
+                    except Exception,e:
+                        print(e)
+                    
         elif drivertype=="Firefox":
-            driver=webdriver.Firefox(executable_path=path+"\\geckodriver.exe")
+            driver=webdriver.Firefox(executable_path=path+"geckodriver.exe")
         elif drivertype=="Ie":
-            driver=webdriver.Ie(executable_path=path+"\\IEDriverServer.exe")
+            driver=webdriver.Ie(executable_path=path+"IEDriverServer.exe")
         return driver
-
+    
 class UrllibSupport:
     
     @staticmethod
@@ -173,7 +220,7 @@ class UrllibSupport:
         page = urllib2.urlopen(req)
         html = page.read()
         return html
-
+    
 class LoadData:
     
     #辅助函数： 生成特定格式字符串
@@ -264,7 +311,7 @@ class SaveData:
         cur=conn.cursor()
         equalstr=""
         columncount=len(columns)
-        columntype=map(lambda x:type(x),columns)
+        columntype=map(lambda x:type(x),data)
         for i in range(columncount):
             if columntype[i]==str or columntype[i]==unicode:
                 equalstr+="""%s="%s","""%(columns[i],data[i])
@@ -277,6 +324,9 @@ class SaveData:
         cur.execute(cmd)
         conn.commit()
         cur.close()
+
+
+
 
 class DatabaseSupport:
     
@@ -310,6 +360,25 @@ class DatabaseSupport:
         cur.close()
         return True
 
+    #写入mysql的操作log
+    @staticmethod
+    def WriteLog(cmd):
+        f=open("../files/MySQL.log",'a')
+        f.write(cmd+'\n')
+        f.close()
+
+class TxtIO:
+    
+    #读取txt文件
+    @staticmethod
+    def Read(filename,split_char='\t',header_remove=True):
+        f=codecs.open(filename,'r','utf-8')
+        if header_remove==True:
+            f.readline()
+        data=f.readlines()
+        data=map(lambda x:x.split(split_char),data)
+        f.close()
+        return data
         
 class Filter:
     
@@ -331,6 +400,20 @@ class Filter:
                 return result[0]
             else:
                 return result[0:returncount]
+    
+    #过滤emoji字符
+    @staticmethod
+    def FilterEmoji(s):
+        emoji_pattern = re.compile(
+            u"(\ud83d[\ude00-\ude4f])|"  # emoticons
+            u"(\ud83c[\udf00-\uffff])|"  # symbols & pictographs (1 of 2)
+            u"(\ud83d[\u0000-\uddff])|"  # symbols & pictographs (2 of 2)
+            u"(\ud83d[\ude80-\udeff])|"  # transport & map symbols
+            u"(\ud83c[\udde0-\uddff])"  # flags (iOS)
+            ,flags=re.UNICODE)
+        s=emoji_pattern.sub(r'',s)
+        return s
+
 
 class GithubAccountManagement:
     
@@ -453,6 +536,10 @@ class GithubAccountManagement:
         return account
     
     @staticmethod
+    def ReleaseAnAccount(conn,account):
+        SaveData.UpdateData(conn,("available",time.strftime("%Y%m%d-%H%M%S")),"github_accounts",["status","update_time"],"id=%s"%(account[0]))
+        
+    @staticmethod
     def CreateG(account,passwd):
         g=github.Github(account,passwd)
         return g
@@ -464,3 +551,25 @@ class OtherSupport:
     def GenerateRandomString(length=10):
         s=''.join(random.sample(string.ascii_letters + string.digits, length))
         return s
+    
+    # 根据列表(list)tasks 和 已完成项目集合(set)tasks_finished生成任务队列
+    # key表示对进行task进行重复判定时使用task中的第几位元素
+    @staticmethod
+    def TaskqueGeneration(tasks,tasks_finished={},key=0):
+        ommited_count=0
+        loaded_count=0
+        que=Queue.Queue()
+        
+        for task in tasks:
+            if task[key] not in tasks_finished:
+                loaded_count+=1
+                que.put(task)
+            else:
+                ommited_count+=1
+        
+        print("loaded tasks: %s"%(loaded_count))
+        print("ommited tasks: %s"%(ommited_count))
+        
+        return que
+        
+        
