@@ -14,8 +14,110 @@ import Queue
 import traceback
 import re
 import time
-import urllib
+import Levenshtein
+import json
 
+
+def isUrl(s):
+    if s==None:
+        return False
+    if s[:4]=='http':
+        return True
+    elif s[0]=='/':
+        return True
+    else:
+        return False
+
+def findUrlOfA(driver):
+    a_s=driver.find_elements_by_tag_name('a')
+    t_as=[]
+    for a in a_s:
+        a_src=a.get_attribute('href')
+        if isUrl(a_src):
+            t_as.append([1,a_src])
+        else:
+            t_as.append([2,a.text])
+    return t_as
+
+def urlPathComplement(urls,path):
+    urls_compl=[]
+    for url in urls:
+        if url[0]==1:
+            urls_compl.append([['url',url[1]]])
+        elif url[0]==2:
+            urls_compl.append(path+[['button',url[1]]])
+    return urls_compl
+
+def turnToElement(driver,url):
+    global urlset
+    new_urls=[]
+    for action in url:
+        print action
+        if action[0]=='url':
+            print action[1]
+            driver.get(action[1])
+        elif action[0]=='iframe':
+            driver.switch_to_frame(action[1])
+        elif action[0]=='button':
+            content=driver.find_element_by_tag_name('html').text
+            page_url=driver.current_url
+            Tools.SeleniumSupport.WaitUntilClickable(driver,link_text=action[1])
+            driver.find_element_by_link_text(action[1]).click()
+            time.sleep(1)
+    if len(url)==1:
+        path=[['url',url[0][1]]]
+    else:
+        # 如果页面url改变，添加url路径；如果url未变，检测页面内容→如果页面内容也未变，不添加该路径；如果页面内容改变，添加点击路径。
+        if driver.current_url!=page_url:
+            path=[['url',driver.current_url]]
+        else:
+            if Levenshtein.jaro(driver.find_element_by_tag_name('html').text,content)<0.95:
+                path=url
+            else:
+                return []
+    urls_in_new_page=findAllUrls(driver,path)
+    for url_in_new_page in urls_in_new_page:
+        surl_in_new_page=json.dumps(url_in_new_page)
+        if surl_in_new_page not in urlset:
+            new_urls.append(url_in_new_page)
+            urlset.add(surl_in_new_page)
+    return new_urls
+
+def findIframes(driver):
+    ifrs=driver.find_elements_by_tag_name('iframe')
+    t_iframes=[]
+    for ifr in ifrs:
+        ifr_id=ifr.get_attribute('id')
+        if ifr_id==None:
+            continue
+
+        ifr_src=ifr.get_attribute('src')
+        if ifr_src==None or not isUrl(ifr_src):
+            t_iframes.append([['url',driver.current_url],['iframe',ifr_id]])
+            continue
+        else:
+            t_iframes.append([['url',ifr_src]])
+    return t_iframes
+
+def findAllUrls(driver,path):
+    t_iframes=findIframes(driver)
+    urls=findUrlOfA(driver)
+    urls=urlPathComplement(urls,path)
+    urls+=t_iframes
+    return urls
+
+def filterByDomain(url,domainName,urlMatchMode=1):
+    if urlMatchMode==1:
+        if url.split('/')[2]==domainName:
+            return 'pass'
+        else:
+            return 'filtered'
+    elif urlMatchMode==2:
+        if '.'.join(url.split('/')[2].split('.')[1:])==domainName:
+            return 'pass'
+        else:
+            return 'filtered'
+        
 
 def run(taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
@@ -28,54 +130,32 @@ def run(taskque,crawlerbody,errortasks):
     task=taskque.get()
     print task
     try:
-        driver.get(task[2])
-        html=driver.page_source
+        #print "url:%s"%(task[2]),len(task[2]),type(task[2])
+        new_urls=turnToElement(driver,json.loads(task[2]))
+        
     except Exception,e:
+        traceback.print_exc()
         print e
         print traceback.print_exc()
         print "error task %s has been put back to taskque"%(task[0])
         return
     if task[1]<=1000000:
-        soup=Tools.BsSupport.SoupGeneration(html)
-        eles_href=Tools.BsSupport.FindElementsWithAttr(soup,'href')
-        eles_src=Tools.BsSupport.FindElementsWithAttr(soup,'src')
-        urls_href=Tools.BsSupport.UrlComplement(map(lambda x:x.attrs['href'],eles_href),task[2])
-        urls_src=Tools.BsSupport.UrlComplement(map(lambda x:x.attrs['src'],eles_src),task[2])
-        eles_iframe=soup.find_all('iframe')
-        for iframe in eles_iframe:
-            if 'id' in iframe.attrs:
-                iframe_name=iframe.attrs['id']
-                #iframe_url=iframe.attrs['src']
-                if iframe_name not in ifrset:
-                    Tools.SaveData.SaveData(conn,[[iframe_name]],"t_iframes",["iframe_name"])
-                    ifrset.add(iframe_name)
-                driver.switch_to_iframe(iframe.attrs['id'])
-                html_attr
-                
-        urls=[]
-        for url in urls_href+urls_src:
-            if url.split('/')[-1].split('.')[-1] not in ['css','js']:
-                urls.append(url)
+        
+        
+        data=[]
+        for new_url in new_urls:
+            if filterByDomain(new_url[0][1],domain_name,url_match_mode)!='pass':
+                continue
+            current_id+=1
+            new_url_json=json.dumps(new_url)
+            taskque.put([current_id,task[1]+1,new_url_json])
+            data.append([current_id,new_url_json,'unvisited'])
             
-        print "found %s urls"%(len(urls))
-        newurls=[]
-        for url in urls:
-            if url not in urlset:
-                urlsplit=url.split('/')
-                if len(urlsplit)<3:
-                    continue
-                urlsplit2=urlsplit[2].split('.')
-                if (url_match_mode==1 and '.'.join(urlsplit2)==domain_name or '.'.join(urlsplit2[1:])==domain_name):
-                    current_id+=1
-                    c_id=current_id
-                    newurls.append([c_id,url,'unvisited'])
-                    urlset.add(url)
-                    taskque.put((c_id,task[0]+1,url))
         
         
-        Tools.SaveData.SaveData(conn,newurls,"t_urls",["id","url","status"])
-        Tools.SaveData.UpdateData(conn,['visited'],"t_urls",["status"],"id=%s"%(task[0]))
-    
+        Tools.SaveData.SaveData(conn,data,"t_urls",['id','url','status'])
+        Tools.SaveData.UpdateData(conn,['visited'],"t_urls",['status'],'id=%s'%(task[0]))
+        
 def get_paras():
     #设置参数
     paras={}
@@ -86,7 +166,7 @@ def get_paras():
                              'port':14803,
                              'passwd':'Aa123456'}
     #线程数
-    paras["threadnumber"]=10
+    paras["threadnumber"]=5
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
@@ -104,15 +184,13 @@ def get_paras():
 def create_queue():
     global initial_url,domain_name,urlset,current_id,ifrset
     
-    
+    initial_url=json.dumps([['url',initial_url]])
     conn=Tools.DatabaseSupport.GenerateConn(dbname='test',host='590ab5bb84735.sh.cdb.myqcloud.com',user='cdb_outerroot',port=14803,passwd='Aa123456')
-    temp=Tools.LoadData.LoadDataByCmd(conn,"select id,url from t_urls")
+    temp=Tools.LoadData.LoadDataByCmd(conn,"select id,url from t_urls limit 1")
     if len(temp)==0:
         Tools.SaveData.SaveData(conn,[['%s'%(initial_url),'unvisited']],'t_urls',['url','status'])
     urls=Tools.LoadData.LoadDataByCmd(conn,"select id,url from t_urls where status='unvisited'")
     current_id=int(Tools.LoadData.LoadDataByCmd(conn,"select max(id) from t_urls")[0][0])
-    
-    ifrset=set(map(lambda x:x[0],Tools.LoadData.LoadDataByCmd(conn,"select iframe_name from t_iframes")))
     
     
     conn.close()
@@ -137,44 +215,13 @@ def main(initial_url1,domain_name1,url_match_mode1):
     initial_url=initial_url1
     domain_name=domain_name1
     url_match_mode=url_match_mode1
-    Spider.main(get_paras(),create_queue,run,mode=2)
+    Spider.main(get_paras(),create_queue,run,mode=1)
 
 
-main("""http://www.douban.com/""",'douban.com',url_match_mode1=2)
-# url_match_mode 1:全域名匹配(course.shlll.net) 2:匹配从第二格开始的部分(shlll.net)
+main("""http://course.shlll.net/Course/coursesearch/p_1/1/A63B73AEB3B95A63""",'course.shlll.net',url_match_mode1=1)
+# url_match_mode 1:全域名匹配(course.shlll.net) 2:匹配从第二格开始的部分(shlll.net) 3:匹配域名的全部部分(course.shlll.net/course)
 
 
 
 
 
-def ExtractValuableInfos(driver,ypath,conn,task,taskque):
-    global urlset,ifrset,domain_name,current_id
-    
-    eles_a=driver.find_elements_by_tag_name('a')
-    
-    [urls_src,urls_dynam_src]=Tools.BsSupport.UrlComplement(map(lambda x:x.attrs['src'],eles_src),task[2])
-    newurls=[]
-    for url in urls_href+urls_src:
-        if url not in urlset:
-            urlsplit=url.split('/')
-            if len(urlsplit)<3:
-                continue
-            urlsplit2=urlsplit[2].split('.')
-            if (url_match_mode==1 and '.'.join(urlsplit2)==domain_name or '.'.join(urlsplit2[1:])==domain_name):
-                current_id+=1
-                c_id=current_id
-                newurls.append([c_id,url,'unvisited'])
-                urlset.add(url)
-                taskque.put((c_id,task[0]+1,url))
-    Tools.SaveData.SaveData(conn,newurls,"t_urls",["id","url","status"])
-    
-    
-    eles_iframe=soup.find_all('iframe')
-    for iframe in eles_iframe:
-        if 'id' in iframe.attrs:
-            iframe_name=iframe.attrs['id']
-            #iframe_url=iframe.attrs['src']
-            if iframe_name not in ifrset:
-                Tools.SaveData.SaveData(conn,[[iframe_name]],"t_iframes",["iframe_name"])
-                ifrset.add(iframe_name)
-            driver.switch_to_iframe(iframe.attrs['id'])

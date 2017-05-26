@@ -74,8 +74,11 @@ class SeleniumSupport:
     
     #等待直到某个对象可点击
     @staticmethod
-    def WaitUntilClickable(driver,xpath):#通过xpath定位
-        locator=(By.XPATH,xpath)
+    def WaitUntilClickable(driver,xpath=None,link_text=None):#通过xpath定位
+        if xpath!=None:
+            locator=(By.XPATH,xpath)
+        elif link_text!=None:
+            locator=(By.LINK_TEXT,link_text)
         WebDriverWait(driver,20,1.5).until(EC.element_to_be_clickable(locator))
         time.sleep(2)
     
