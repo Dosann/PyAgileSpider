@@ -19,3 +19,6 @@ def CreateT_urls(cur):
     cmd="""create table t_urls(id int auto_increment primary key,url text,status varchar(20))"""
     cur.execute(cmd)
 
+def CreateT_iframes(cur):
+    cmd="""create table t_iframes(iframe_name varchar(50))"""
+    cur.execute(cmd)

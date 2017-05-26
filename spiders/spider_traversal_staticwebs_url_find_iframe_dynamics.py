@@ -35,12 +35,17 @@ def run(threadname,taskque,crawlerbody,errortasks):
         print "error task %s has been put back to taskque"%(task[0])
         return
     if task[1]<=1000000:
+        eles_with_href=re.findall(r"<.+?href.+?</.+?>",html)
+        eles_with_src=re.findall(r"<.+?src.+?</.+?>",html)
+        hrefs=map(lambda x:re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')",x),eles_with_href)
+        srcs=map(lambda x:re.findall(r"(?<=src=\").+?(?=\")|(?<=src=\').+?(?=\')",x),eles_with_src)
+
         urls=re.findall(r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')",html)
         iframes=re.findall(r"<iframe.+</iframe>",html)
         for iframe in iframes:
             iframe_name=re.findall(r"(?<=id=\").+?(?=\")",iframe)
             if iframe_name not in ifrset:
-                Tools.SaveData.SaveData(conn,[[iframe_name]],"t_urls",["iframe_name"])
+                Tools.SaveData.SaveData(conn,[[iframe_name]],"t_iframes",["iframe_name"])
                 ifrset.add(iframe_name)
             urls+=re.findall(r"(?<=src=\").+?(?=\")|(?<=src=\').+?(?=\')",iframe)
         urls=map(lambda x:(x[:4]=='http' and x or '/'.join(task[2].split('/')[0:3])+x),urls)
