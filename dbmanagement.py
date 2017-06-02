@@ -6,6 +6,8 @@ Email: duxin_be@outlook.com
 
 """
 
+
+
 def db_construction(cur,tables):
     
     #若表单不存在，则添加
@@ -15,6 +17,9 @@ def db_construction(cur,tables):
     
     if "t_iframes" not in tables:
         CreateT_iframes(cur)
+        
+    if "t_dianping" not in tables:
+        CreateT_dianping(cur)
 
 #添加表单
 
@@ -24,4 +29,8 @@ def CreateT_urls(cur):
 
 def CreateT_iframes(cur):
     cmd="""create table t_iframes(iframe_name varchar(50))"""
+    cur.execute(cmd)
+
+def CreateT_dianping(cur):
+    cmd="""create table t_dianping(id int auto_increment primary key,url text,status varchar(20))"""
     cur.execute(cmd)
