@@ -16,6 +16,7 @@ import re
 import time
 import Levenshtein
 import json
+from sys import exit as sexit
 
 
 def isUrl(s):
@@ -153,6 +154,8 @@ def run(taskque,crawlerbody,errortasks):
         traceback.print_exc()
         print e
         print "error task %s has been put back to taskque"%(task[0])
+        if hasattr(e,'reason') and hasattr(e.reason,'errno') and e.reason.errno==10061:
+            sexit('errno:10061')
         return
         
         

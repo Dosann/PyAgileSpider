@@ -8,6 +8,7 @@ Created on Thu Mar 09 11:19:58 2017
 import MySQLdb
 import Tools
 import traceback
+from sys import exit as sexit
 
 class Crawler:
 
@@ -84,6 +85,8 @@ class Crawler:
                 try:
                     #开始爬取
                     run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                except SystemError,se:
+                    sexit('system error')
                 except:
                     print "(Crawler)"
                     traceback.print_exc()
@@ -98,6 +101,8 @@ class Crawler:
                 try:
                     #开始爬取
                     run(taskque=taskque,crawlerbody=self,errortasks=errortasks)
+                except SystemError,se:
+                    sexit('system error')
                 except:
                     print "(Crawler)"
                     traceback.print_exc()
