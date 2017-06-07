@@ -167,7 +167,7 @@ def get_paras():
                              'port':3306,
                              'passwd':'Csstsari107'}
     #线程数
-    paras["threadnumber"]=10
+    paras["threadnumber"]=5
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
