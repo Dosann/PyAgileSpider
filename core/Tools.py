@@ -6,6 +6,7 @@ Created on Thu Mar 09 11:19:57 2017
 """
 
 import time
+import platform
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import selenium.webdriver.common.desired_capabilities as DC
@@ -158,28 +159,42 @@ class SeleniumSupport:
     #创建一个selenium的模拟浏览器webdriver
     @staticmethod
     def CreateWebdriver(drivertype,path="..\\core\\webdrivers\\",loadimage=True,downloadpath=None):
+        pf=platform.platform()
         if drivertype=="PhantomJS":
+            dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
+            dcap["phantomjs.page.settings.userAgent"] =("Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36")
             if loadimage==False:
-                dcap=dict(DC.DesiredCapabilities.PHANTOMJS)
                 dcap["phantomjs.page.settings.loadImages"]=False
-                try:
-                    driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
-                except:
-                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                if pf[:5]=='Windo':
                     try:
-                        print("current path: %s"%(path+"phantomjs"))
-                        driver=webdriver.PhantomJS(desired_capabilities=dcap)
-                    except Exception,e:
-                        print(e)
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
+                    except:
+                        print("can't not open driver from core/webdrivers. opening driver from default path")
+                        try:
+                            print("current path: %s"%(path+"phantomjs"))
+                            driver=webdriver.PhantomJS(desired_capabilities=dcap)
+                        except Exception,e:
+                            print("can't not open driver from core/webdrivers. opening driver from default path")
+                else:
+                    print "This System Platform is Not Windows!!!"
+                    #path=path.replace('\\','/')
+                    path='/usr/bin/'
+                    print path
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap)
             else:
-                try:
-                    driver=webdriver.PhantomJS(executable_path=path+"phantomjs.exe")
-                except:
-                    print("can't not open driver from core/webdrivers. opening driver from default path")
+                if pf[:5]=='Windo':
                     try:
-                        driver=webdriver.PhantomJS()
-                    except Exception,e:
-                         print(e)
+                        driver=webdriver.PhantomJS(desired_capabilities=dcap,executable_path=path+"phantomjs.exe")
+                    except:
+                        print("can't not open driver from core/webdrivers. opening driver from default path")
+                        try:
+                            driver=webdriver.PhantomJS()
+                        except Exception,e:
+                             print(e)
+                else:
+                    print "This System Platform is Not Windows!!!"
+                    path='/usr/bin/'
+                    driver=webdriver.PhantomJS(desired_capabilities=dcap)
         elif drivertype=="Chrome":
             if downloadpath!=None:
                 chromeOptions=webdriver.ChromeOptions()

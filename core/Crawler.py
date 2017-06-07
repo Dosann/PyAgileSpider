@@ -15,17 +15,6 @@ class Crawler:
 
         self.threadname=threadname
 
-        if paras["conn_settings"]!=None:
-            self.conn=MySQLdb.Connection(
-                    host=paras["conn_settings"]["host"],
-                    port=paras["conn_settings"]["port"],
-                    user=paras["conn_settings"]["user"],
-                    passwd=paras["conn_settings"]["passwd"],
-                    db=paras["conn_settings"]["dbname"],
-                    charset=paras["conn_settings"]["charset"])
-        else:
-            self.conn=None
-
         #是否使用Github账号
         if paras["github_account"]!=None:
             account=Tools.GithubAccountManagement.OccupyAnAccount(self.conn)
@@ -55,6 +44,18 @@ class Crawler:
                                                                        dbname=paras["redis_settings"]["dbname"])
         else:
             self.red=None
+        
+        #是否开启mysql连接
+        if paras["conn_settings"]!=None:
+            self.conn=MySQLdb.Connection(
+                    host=paras["conn_settings"]["host"],
+                    port=paras["conn_settings"]["port"],
+                    user=paras["conn_settings"]["user"],
+                    passwd=paras["conn_settings"]["passwd"],
+                    db=paras["conn_settings"]["dbname"],
+                    charset=paras["conn_settings"]["charset"])
+        else:
+            self.conn=None
 
 
         #对该Crawler对象的其他初始化操作

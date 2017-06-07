@@ -132,32 +132,30 @@ def run(taskque,crawlerbody,errortasks):
     #从队列中读取1个任务
     task=taskque.get()
     print task
+    
     try:
         #print "url:%s"%(task[2]),len(task[2]),type(task[2])
         new_urls=turnToElement(driver,json.loads(task[2]))
-        
+        if task[1]<=1000000:
+            
+            data=[]
+            for new_url in new_urls:
+                if filterByDomain(new_url[0][1],domain_name,url_match_mode)!='pass':
+                    continue
+                current_id+=1
+                new_url_json=json.dumps(new_url)
+                taskque.put([current_id,task[1]+1,new_url_json])
+                data.append([current_id,new_url_json,'unvisited'])
+                
+            Tools.SaveData.SaveData(conn,data,"%s"%(tname_urls),['id','url','status'])
+            Tools.SaveData.UpdateData(conn,['visited'],"%s"%(tname_urls),['status'],'id=%s'%(task[0]))
     except Exception,e:
         traceback.print_exc()
         print e
-        print traceback.print_exc()
         print "error task %s has been put back to taskque"%(task[0])
         return
-    if task[1]<=1000000:
         
         
-        data=[]
-        for new_url in new_urls:
-            if filterByDomain(new_url[0][1],domain_name,url_match_mode)!='pass':
-                continue
-            current_id+=1
-            new_url_json=json.dumps(new_url)
-            taskque.put([current_id,task[1]+1,new_url_json])
-            data.append([current_id,new_url_json,'unvisited'])
-            
-        
-        
-        Tools.SaveData.SaveData(conn,data,"%s"%(tname_urls),['id','url','status'])
-        Tools.SaveData.UpdateData(conn,['visited'],"%s"%(tname_urls),['status'],'id=%s'%(task[0]))
         
 def get_paras():
     #设置参数
@@ -173,12 +171,23 @@ def get_paras():
     
     #不开启webdriver
     paras["webdriver"]="PhantomJS"
+    paras["loadimage"]=False
     
     #使用github账号
     paras["github_account"]=None
     
     #是否自动创建表单
     paras["db_construction"]=True
+         
+    #Crawler对象的其他初始化操作(登陆之类的)
+    #paras["crawler_initialize"]=CrawlerInitialize
+    
+    #是否在redis中读写队列
+    paras["taskque_format"]=None
+    #paras["taskque_format"]="redis"
+    #paras["redis_settings"]={"dbname":0,
+    #                         "host":'120.25.107.34',
+    #                         "port":6379}
     
     
     return paras
@@ -222,7 +231,7 @@ def main(initial_url1,domain_name1,url_match_mode1,tname_urls1):
     Spider.main(get_paras(),create_queue,run,mode=1)
 
 
-main("""https://www.dianping.com/shanghai/food""",'www.dianping.com',url_match_mode1=1,tname_urls1='t_dianping')
+main("""https://www.dianping.com/shanghai/food""",'dianping.com',url_match_mode1=2,tname_urls1='t_dianping')
 # url_match_mode 1:全域名匹配(course.shlll.net) 2:匹配从第二格开始的部分(shlll.net) 3:匹配域名的全部部分(course.shlll.net/course)
 
 
