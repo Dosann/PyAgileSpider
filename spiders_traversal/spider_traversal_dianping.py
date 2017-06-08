@@ -17,6 +17,7 @@ import time
 import Levenshtein
 import json
 from sys import exit as sexit
+import MySQLdb
 
 
 def isUrl(s):
@@ -126,7 +127,13 @@ def filterByDomain(url,domainName,urlMatchMode=1):
 def run(taskque,crawlerbody,errortasks):
     #从队列中获取任务，编写与该任务相关的信息提取代码
     global initial_url,domain_name,urlset,current_id,url_match_mode,ifrset,tname_urls
-
+   
+    
+    crawlerbody.runCount+=1
+    if crawlerbody.runCount%100==0:
+        crawlerbody.driver.quit()
+        crawlerbody.driver=Tools.SeleniumSupport.CreateWebdriver("PhantomJS",loadimage=False)
+        print("phantomjs webdriver has been restarted on schedule")
     conn=crawlerbody.conn
     driver=crawlerbody.driver
     
@@ -150,6 +157,9 @@ def run(taskque,crawlerbody,errortasks):
                 
             Tools.SaveData.SaveData(conn,data,"%s"%(tname_urls),['id','url','status'])
             Tools.SaveData.UpdateData(conn,['visited'],"%s"%(tname_urls),['status'],'id=%s'%(task[0]))
+    except MySQLdb.OperationalError,e:
+        sexit('OperationError: MySql server has gone away')
+        
     except Exception,e:
         traceback.print_exc()
         print e
@@ -183,7 +193,7 @@ def get_paras():
     paras["db_construction"]=True
          
     #Crawler对象的其他初始化操作(登陆之类的)
-    #paras["crawler_initialize"]=CrawlerInitialize
+    paras["crawler_initialize"]=CrawlerInitialize
     
     #是否在redis中读写队列
     paras["taskque_format"]=None
@@ -223,6 +233,9 @@ def create_queue():
             que.put((urlid,0,url))
     
     return que
+
+def CrawlerInitialize(crawlerbody):
+    crawlerbody.runCount=0
 
 
 def main(initial_url1,domain_name1,url_match_mode1,tname_urls1):
